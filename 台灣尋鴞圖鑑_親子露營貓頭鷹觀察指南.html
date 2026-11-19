@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台灣尋鴞圖鑑｜親子露營貓頭鷹觀察指南</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Noto Sans TC & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            forest: {
+              950: '#0a1510',
+              900: '#0f1f17',
+              800: '#162b20',
+              700: '#214030',
+              600: '#315c46',
+            },
+            ambercamp: {
+              400: '#f2ba63',
+              500: '#e8a849',
+              600: '#c98628',
+            },
+            parchment: {
+              50: '#fdfbf7',
+              100: '#f8f3e8',
+              200: '#efe6d4',
+              300: '#dfd1b6',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* 基礎深森露營手冊背景 */
+    body {
+      background-color: #0f1f17;
+      color: #f8f3e8;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .forest-bg {
+      background-image:
+        radial-gradient(circle at 12% 14%, rgba(232, 168, 73, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 86% 22%, rgba(49, 92, 70, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 50% 92%, rgba(232, 168, 73, 0.05) 0%, transparent 45%);
+    }
+
+    /* 真實照片載入微光動畫與臉部置中裁切 */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .photo-shimmer {
+      background: linear-gradient(90deg, #162b20 25%, #234232 50%, #162b20 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.6s infinite linear;
+    }
+    .owl-real-photo {
+      object-fit: cover;
+      object-position: center 20%;
+      transition: opacity 0.45s ease, transform 0.35s ease, filter 0.35s ease;
+    }
+
+    /* 音波動畫 */
+    @keyframes soundWave {
+      0%, 100% { transform: scaleY(0.3); opacity: 0.6; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+    .wave-bar {
+      transform-origin: center;
+      transition: transform 0.2s ease;
+    }
+    .playing .wave-bar {
+      animation: soundWave 0.75s ease-in-out infinite;
+    }
+    .playing .wave-bar:nth-child(2) { animation-delay: 0.12s; }
+    .playing .wave-bar:nth-child(3) { animation-delay: 0.24s; }
+    .playing .wave-bar:nth-child(4) { animation-delay: 0.36s; }
+    .playing .wave-bar:nth-child(5) { animation-delay: 0.18s; }
+
+    /* 卡片懸浮微動效 */
+    .owl-card {
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+    @media (hover: hover) {
+      .owl-card:hover {
+        transform: translateY(-4px);
+      }
+      .owl-card:hover .owl-real-photo {
+        transform: scale(1.03);
+      }
+    }
+
+    /* =========================================================
+       夜間紅光模式 (Night Red-Light Mode)
+       保護夜間暗視力、不驚擾貓頭鷹與野生動物的低亮度紅黑配色
+       ========================================================= */
+    body.red-light-mode {
+      background-color: #080000 !important;
+      background-image: none !important;
+      color: #d94848 !important;
+    }
+    body.red-light-mode header,
+    body.red-light-mode footer,
+    body.red-light-mode .red-surface-dark {
+      background-color: #120202 !important;
+      border-color: #3d0a0a !important;
+    }
+    body.red-light-mode .paper-card,
+    body.red-light-mode .modal-panel {
+      background-color: #160303 !important;
+      border-color: #4a0d0d !important;
+      color: #d94848 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.85) !important;
+    }
+    body.red-light-mode .paper-subcard {
+      background-color: #210505 !important;
+      border-color: #4a0d0d !important;
+      color: #c93b3b !important;
+    }
+    body.red-light-mode .text-forest-950,
+    body.red-light-mode .text-forest-900,
+    body.red-light-mode .text-forest-800,
+    body.red-light-mode .text-forest-700,
+    body.red-light-mode .text-stone-800,
+    body.red-light-mode .text-stone-700,
+    body.red-light-mode .text-stone-600,
+    body.red-light-mode .text-stone-500,
+    body.red-light-mode .text-parchment-50,
+    body.red-light-mode .text-parchment-100,
+    body.red-light-mode .text-parchment-200,
+    body.red-light-mode .text-ambercamp-400,
+    body.red-light-mode .text-ambercamp-500,
+    body.red-light-mode .text-amber-700,
+    body.red-light-mode .text-amber-800,
+    body.red-light-mode .text-amber-900,
+    body.red-light-mode .text-emerald-700,
+    body.red-light-mode .text-emerald-800 {
+      color: #d64545 !important;
+    }
+    body.red-light-mode .btn-primary,
+    body.red-light-mode .badge-accent {
+      background-color: #5c0f0f !important;
+      color: #ff8a8a !important;
+      border-color: #7d1616 !important;
+    }
+    body.red-light-mode .btn-secondary,
+    body.red-light-mode .filter-pill {
+      background-color: #210404 !important;
+      color: #cc3d3d !important;
+      border-color: #4a0d0d !important;
+    }
+    body.red-light-mode .filter-pill.active-pill {
+      background-color: #6b1111 !important;
+      color: #ff9999 !important;
+      border-color: #991b1b !important;
+    }
+    body.red-light-mode .elev-track {
+      background-color: #2b0606 !important;
+    }
+    body.red-light-mode .elev-fill {
+      background: linear-gradient(90deg, #7a1212, #b82121) !important;
+    }
+    body.red-light-mode input,
+    body.red-light-mode textarea {
+      background-color: #1c0303 !important;
+      border-color: #520f0f !important;
+      color: #e05252 !important;
+    }
+    /* 真實照片與 SVG 在夜間紅光模式下的低亮度紅光濾鏡 */
+    body.red-light-mode .owl-real-photo,
+    body.red-light-mode .lightbox-photo {
+      filter: sepia(100%) hue-rotate(-55deg) saturate(260%) brightness(0.55) contrast(1.1) !important;
+    }
+    body.red-light-mode .owl-svg-wrap svg {
+      filter: sepia(100%) hue-rotate(-55deg) saturate(280%) brightness(0.48) contrast(1.12) !important;
+    }
+    body.red-light-mode .photo-shimmer {
+      background: linear-gradient(90deg, #1b0303 25%, #2f0606 50%, #1b0303 75%) !important;
+    }
+
+    /* 自訂捲軸 */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.15);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(232, 168, 73, 0.35);
+      border-radius: 999px;
+    }
+    body.red-light-mode ::-webkit-scrollbar-thumb {
+      background: rgba(180, 30, 30, 0.5);
+    }
+  </style>
+</head>
+<body class="forest-bg min-h-screen flex flex-col font-sans selection:bg-ambercamp-500 selection:text-forest-950">
+
+  <!-- 頂部導覽列 -->
+  <header class="sticky top-0 z-40 bg-forest-950/92 backdrop-blur-md border-b border-forest-700/60 shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- 品牌標題 -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-ambercamp-500/20 border border-ambercamp-400/40 flex items-center justify-center shrink-0 badge-accent">
+          <svg class="w-6 h-6 text-ambercamp-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 4l3 3h8l3-3v8a7 7 0 0 1-14 0V4z"/>
+            <circle cx="9.5" cy="11" r="1.5" fill="currentColor"/>
+            <circle cx="14.5" cy="11" r="1.5" fill="currentColor"/>
+            <path d="M12 13l-1.2 1.8h2.4L12 13z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-black tracking-wide text-parchment-50 leading-tight">
+            台灣尋鴞圖鑑
+          </h1>
+          <p class="text-[11px] sm:text-xs text-parchment-200/75">
+            親子露營貓頭鷹觀察指南 · 真實生態照版
+          </p>
+        </div>
+      </div>
+
+      <!-- 右側功能按鈕：賞鴞守則 & 夜間紅光模式 -->
+      <div class="flex items-center gap-2">
+        <button id="btn-ethics" type="button"
+          class="btn-secondary px-3 py-2 rounded-xl bg-forest-800 hover:bg-forest-700 border border-forest-600/70 text-xs sm:text-sm font-medium text-parchment-100 flex items-center gap-1.5 transition cursor-pointer">
+          <span>🌿</span>
+          <span class="hidden sm:inline">賞鴞守則</span>
+          <span class="sm:hidden">守則</span>
+        </button>
+
+        <button id="btn-redlight" type="button" aria-pressed="false"
+          class="px-3 py-2 rounded-xl bg-red-950/85 hover:bg-red-900/85 border border-red-500/50 text-xs sm:text-sm font-bold text-red-200 flex items-center gap-1.5 transition cursor-pointer">
+          <span id="redlight-dot" class="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]"></span>
+          <span id="redlight-label">夜間紅光</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 主導覽分頁籤 -->
+    <div class="max-w-6xl mx-auto px-4 pb-2.5">
+      <nav class="grid grid-cols-3 gap-2 bg-forest-900/90 p-1 rounded-2xl border border-forest-700/60 red-surface-dark" role="tablist">
+        <button id="tab-guide" role="tab" aria-selected="true" data-tab="guide"
+          class="tab-btn active-pill filter-pill py-2 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5 bg-ambercamp-500 text-forest-950 shadow cursor-pointer">
+          <span>📖</span><span>圖鑑探索</span>
+        </button>
+        <button id="tab-quiz" role="tab" aria-selected="false" data-tab="quiz"
+          class="tab-btn filter-pill py-2 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5 text-parchment-200 hover:bg-forest-800 cursor-pointer">
+          <span>🎧</span><span>聽音辨位挑戰</span>
+        </button>
+        <button id="tab-log" role="tab" aria-selected="false" data-tab="log"
+          class="tab-btn filter-pill py-2 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5 text-parchment-200 hover:bg-forest-800 cursor-pointer">
+          <span>🏕️</span><span>尋鴞紀錄簿</span>
+          <span id="log-count-badge" class="ml-0.5 px-1.5 py-0.5 text-[10px] rounded-full bg-forest-950/60 text-ambercamp-400">0/6</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 主要內容區 -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-5 sm:py-7">
+
+    <!-- ==================== 分頁 1：圖鑑探索 ==================== -->
+    <section id="view-guide" class="space-y-6">
+      <!-- 露營小提示橫幅 -->
+      <div class="red-surface-dark rounded-2xl bg-forest-800/85 border border-forest-700/80 p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-ambercamp-400 uppercase tracking-wider">
+            <span>🌙</span> 露營夜觀實戰手冊 · 真實生態照
+          </div>
+          <h2 class="text-lg sm:text-xl font-bold text-parchment-50">
+            先用耳朵聽，再用紅光找！認識台灣 6 種代表性貓頭鷹
+          </h2>
+          <p class="text-xs sm:text-sm text-parchment-200/80 leading-relaxed">
+            即時串接 Wikimedia 公開生態圖庫呈現真實貓頭鷹樣貌（山區無網路時自動切換離線圖解），並內建<strong>離線模擬叫聲</strong>陪孩子出發前熟記口訣。
+          </p>
+        </div>
+        <div class="shrink-0 flex items-center gap-2 text-xs bg-ambercamp-500/15 border border-ambercamp-500/35 text-ambercamp-400 px-3.5 py-2.5 rounded-xl badge-accent">
+          <span class="text-base">⚠️</span>
+          <span>野外請戴耳機或出發前先聽，<br class="hidden sm:inline" /><strong>切勿對著森林播放鳥音誘鳥！</strong></span>
+        </div>
+      </div>
+
+      <!-- 多維度篩選器 -->
+      <div class="red-surface-dark rounded-2xl bg-forest-800/70 border border-forest-700/60 p-4 space-y-3.5">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-bold text-parchment-100 flex items-center gap-1.5">
+            <span>🔍</span> 依露營環境與特徵篩選
+          </h3>
+          <button id="btn-reset-filters" type="button"
+            class="text-xs text-ambercamp-400 hover:underline cursor-pointer">
+            重設條件
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <!-- 露營海拔篩選 -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-medium text-parchment-200/75 block">⛰️ 露營區海拔</label>
+            <div class="flex flex-wrap gap-1.5" id="filter-elev">
+              <button data-val="all" class="filter-pill active-pill px-2.5 py-1.5 rounded-lg text-xs font-medium bg-ambercamp-500 text-forest-950 transition cursor-pointer">全部</button>
+              <button data-val="low" class="filter-pill px-2.5 py-1.5 rounded-lg text-xs font-medium bg-forest-900 text-parchment-200 border border-forest-700 hover:bg-forest-700 transition cursor-pointer">平地～低海拔</button>
+              <button data-val="mid" class="filter-pill px-2.5 py-1.5 rounded-lg text-xs font-medium bg-forest-900 text-parchment-200 border border-forest-700 hover:bg-forest-700 transition cursor-pointer">中海拔 (1000m+)</button>
+            </div>
+          </div>
+
+          <!-- 外觀耳朵篩選 -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-medium text-parchment-200/75 block">🦉 頭頂特徵（耳羽簇）</label>
+            <div class="flex flex-wrap gap-1.5" id="filter-ears">
+              <button data-val="all" class="filter-pill active-pill px-2.5 py-1.5 rounded-lg text-xs font-medium bg-ambercamp-500 text-forest-950 transition cursor-pointer">全部</button>
+              <button data-val="yes" class="filter-pill px-2.5 py-1.5 rounded-lg text-xs font-medium bg-forest-900 text-parchment-200 border border-forest-700 hover:bg-forest-700 transition cursor-pointer">有耳羽簇（角鴞/魚鴞）</button>
+              <button data-val="no" class="filter-pill px-2.5 py-1.5 rounded-lg text-xs font-medium bg-forest-900 text-parchment-200 border border-forest-700 hover:bg-forest-700 transition cursor-pointer">無耳羽簇（圓頭）</button>
+            </div>
+          </div>
+
+          <!-- 活動時間篩選 -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-medium text-parchment-200/75 block">☀️ 活動時段</label>
+            <div class="flex flex-wrap gap-1.5" id="filter-activity">
+              <button data-val="all" class="filter-pill active-pill px-2.5 py-1.5 rounded-lg text-xs font-medium bg-ambercamp-500 text-forest-950 transition cursor-pointer">全部</button>
+              <button data-val="nocturnal" class="filter-pill px-2.5 py-1.5 rounded-lg text-xs font-medium bg-forest-900 text-parchment-200 border border-forest-700 hover:bg-forest-700 transition cursor-pointer">🌙 夜行性</button>
+              <button data-val="diurnal" class="filter-pill px-2.5 py-1.5 rounded-lg text-xs font-medium bg-forest-900 text-parchment-200 border border-forest-700 hover:bg-forest-700 transition cursor-pointer">☀️ 日行性（白天可見）</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 貓頭鷹卡片網格 -->
+      <div id="owl-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- 由 JavaScript 動態渲染 -->
+      </div>
+
+      <!-- 無符合結果提示 -->
+      <div id="empty-state" class="hidden text-center py-12 rounded-2xl bg-forest-800/60 border border-forest-700/60 red-surface-dark">
+        <p class="text-3xl mb-2">🦉❓</p>
+        <p class="text-parchment-100 font-bold">目前條件沒有符合的貓頭鷹喔！</p>
+        <p class="text-xs text-parchment-200/70 mt-1">試試看放寬海拔或外觀篩選條件</p>
+      </div>
+    </section>
+
+    <!-- ==================== 分頁 2：聽音辨位挑戰 ==================== -->
+    <section id="view-quiz" class="hidden max-w-3xl mx-auto space-y-6">
+      <div class="paper-card rounded-3xl bg-parchment-100 text-forest-950 border-2 border-parchment-300 shadow-2xl p-5 sm:p-7 space-y-6">
+        <!-- 測驗頂部計分板 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-parchment-300 pb-4">
+          <div>
+            <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 badge-accent mb-1">親子互動遊戲</span>
+            <h2 class="text-xl sm:text-2xl font-black text-forest-950">🎧 聽音辨位大挑戰</h2>
+            <p class="text-xs sm:text-sm text-stone-600">仔細聽聽看，黑暗的森林裡是哪一隻貓頭鷹在唱歌？答題後揭曉真實模樣！</p>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <div class="paper-subcard px-3.5 py-2 rounded-2xl bg-parchment-200/80 border border-parchment-300 text-center">
+              <div class="text-[11px] text-stone-600 font-medium">目前連勝</div>
+              <div id="quiz-streak" class="text-xl font-black text-amber-700">0 🔥</div>
+            </div>
+            <div class="paper-subcard px-3.5 py-2 rounded-2xl bg-parchment-200/80 border border-parchment-300 text-center">
+              <div class="text-[11px] text-stone-600 font-medium">最高紀錄</div>
+              <div id="quiz-best" class="text-xl font-black text-forest-800">0 🏆</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 神秘聲音播放區 -->
+        <div class="paper-subcard rounded-2xl bg-forest-900 text-parchment-50 p-6 flex flex-col items-center text-center space-y-4">
+          <div class="text-xs font-bold tracking-widest uppercase text-ambercamp-400">Mystery Owl Call</div>
+
+          <button id="btn-quiz-play" type="button"
+            class="btn-primary group relative w-24 h-24 rounded-full bg-ambercamp-500 hover:bg-ambercamp-400 text-forest-950 shadow-lg flex flex-col items-center justify-center transition active:scale-95 cursor-pointer">
+            <span id="quiz-play-icon" class="text-3xl leading-none">▶️</span>
+            <span id="quiz-play-text" class="text-[11px] font-black mt-1">播放叫聲</span>
+          </button>
+
+          <!-- 動態音波條 -->
+          <div id="quiz-wave" class="flex items-center justify-center gap-1.5 h-7">
+            <span class="wave-bar w-1.5 h-3 bg-ambercamp-400 rounded-full"></span>
+            <span class="wave-bar w-1.5 h-6 bg-ambercamp-400 rounded-full"></span>
+            <span class="wave-bar w-1.5 h-7 bg-ambercamp-400 rounded-full"></span>
+            <span class="wave-bar w-1.5 h-5 bg-ambercamp-400 rounded-full"></span>
+            <span class="wave-bar w-1.5 h-3 bg-ambercamp-400 rounded-full"></span>
+          </div>
+
+          <!-- 提示按鈕 -->
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            <button id="btn-quiz-hint" type="button"
+              class="btn-secondary px-3.5 py-1.5 rounded-xl bg-forest-800 hover:bg-forest-700 border border-forest-600 text-xs text-parchment-200 transition cursor-pointer">
+              💡 需要小提示
+            </button>
+          </div>
+          <p id="quiz-hint-text" class="hidden text-xs sm:text-sm text-ambercamp-400 bg-forest-950/60 px-4 py-2 rounded-xl border border-ambercamp-500/30"></p>
+        </div>
+
+        <!-- 四選一選項區 -->
+        <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- JS 動態生成 -->
+        </div>
+
+        <!-- 答題回饋與真實照片揭曉區 -->
+        <div id="quiz-feedback" class="hidden rounded-2xl p-4 sm:p-5 border space-y-4">
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+            <div id="quiz-reveal-photo" class="w-full sm:w-40 aspect-[16/10] sm:aspect-square rounded-2xl overflow-hidden shrink-0 bg-forest-900 shadow-md">
+              <!-- JS 填入真實照片 -->
+            </div>
+            <div class="flex-1 space-y-2 text-center sm:text-left">
+              <h3 id="quiz-feedback-title" class="text-lg sm:text-xl font-black"></h3>
+              <p id="quiz-feedback-desc" class="text-sm leading-relaxed"></p>
+              <div class="pt-1 flex flex-wrap justify-center sm:justify-start gap-2">
+                <button id="btn-quiz-next" type="button"
+                  class="btn-primary px-5 py-2.5 rounded-xl bg-forest-800 hover:bg-forest-700 text-parchment-50 text-sm font-bold transition cursor-pointer">
+                  下一題 ➡️
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 分頁 3：露營尋鴞紀錄簿 ==================== -->
+    <section id="view-log" class="hidden space-y-6">
+      <!-- 探索進度總覽卡片 -->
+      <div class="paper-card rounded-3xl bg-parchment-100 text-forest-950 border-2 border-parchment-300 p-5 sm:p-6 shadow-xl space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 badge-accent mb-1">本機自動儲存</span>
+            <h2 class="text-xl sm:text-2xl font-black text-forest-950">🏕️ 我的親子露營尋鴞紀錄簿</h2>
+            <p class="text-xs sm:text-sm text-stone-600 mt-0.5">勾選聽過或親眼看過的貓頭鷹，記下露營日期與營區秘境！</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="paper-subcard px-4 py-2.5 rounded-2xl bg-parchment-200 border border-parchment-300 text-center">
+              <div class="text-[11px] text-stone-600">👂 聽過聲音</div>
+              <div id="stat-heard" class="text-xl font-black text-forest-800">0 / 6</div>
+            </div>
+            <div class="paper-subcard px-4 py-2.5 rounded-2xl bg-parchment-200 border border-parchment-300 text-center">
+              <div class="text-[11px] text-stone-600">👀 親眼看到</div>
+              <div id="stat-seen" class="text-xl font-black text-amber-700">0 / 6</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 總進度條 -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-xs font-bold text-stone-700">
+            <span>尋鴞圖鑑解鎖進度（聽過或看到即解鎖）</span>
+            <span id="stat-percent">0%</span>
+          </div>
+          <div class="elev-track w-full h-3.5 rounded-full bg-parchment-300 overflow-hidden">
+            <div id="stat-progress-bar" class="elev-fill h-full rounded-full bg-gradient-to-r from-forest-600 to-ambercamp-500 transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 種貓頭鷹紀錄清單 -->
+      <div id="log-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- JS 動態生成 -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 頁尾：賞鴞三不原則快覽 -->
+  <footer class="mt-10 bg-forest-950/90 border-t border-forest-800 py-6 px-4">
+    <div class="max-w-6xl mx-auto space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <div class="red-surface-dark rounded-xl bg-forest-800/70 border border-forest-700/70 p-3.5 flex items-start gap-2.5">
+          <span class="text-lg">🔦</span>
+          <div>
+            <strong class="text-ambercamp-400 block mb-0.5">1. 不強光直射眼睛</strong>
+            <p class="text-parchment-200/75 leading-relaxed">夜觀請使用紅光或最弱光，僅照射樹枝周圍，避免強光害貓頭鷹暫時失明。</p>
+          </div>
+        </div>
+        <div class="red-surface-dark rounded-xl bg-forest-800/70 border border-forest-700/70 p-3.5 flex items-start gap-2.5">
+          <span class="text-lg">🔇</span>
+          <div>
+            <strong class="text-ambercamp-400 block mb-0.5">2. 不播放鳥音誘鳥</strong>
+            <p class="text-parchment-200/75 leading-relaxed">本網頁叫聲僅供行前練習與圖鑑對照，在野外切勿外放聲音干擾牠們領域與育雛。</p>
+          </div>
+        </div>
+        <div class="red-surface-dark rounded-xl bg-forest-800/70 border border-forest-700/70 p-3.5 flex items-start gap-2.5">
+          <span class="text-lg">👣</span>
+          <div>
+            <strong class="text-ambercamp-400 block mb-0.5">3. 不喧嘩、不離隊</strong>
+            <p class="text-parchment-200/75 leading-relaxed">輕聲細語才能聽見叫聲；夜間抬頭找樹上時，大人請牽好孩子注意腳下營繩與邊坡。</p>
+          </div>
+        </div>
+      </div>
+      <p class="text-center text-[11px] text-parchment-200/50">
+        台灣尋鴞圖鑑｜真實生態照片來源：Wikipedia / Wikimedia Commons · 內建離線模擬參考音（Web Audio API）
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== 貓頭鷹詳情彈出視窗 (Modal) ==================== -->
+  <div id="detail-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5 overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="modal-panel relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-parchment-100 text-forest-950 border-2 border-parchment-300 shadow-2xl">
+      <!-- 關閉按鈕 -->
+      <button id="btn-close-detail" type="button" aria-label="關閉視窗"
+        class="btn-secondary sticky top-3 float-right mr-3 mt-3 z-20 w-10 h-10 rounded-full bg-parchment-200/95 hover:bg-parchment-300 border border-parchment-300 text-forest-900 font-bold flex items-center justify-center shadow cursor-pointer">
+        ✕
+      </button>
+      <div id="detail-content" class="p-5 sm:p-7 space-y-5">
+        <!-- JS 動態填入 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 照片大圖放大檢視 (Lightbox) ==================== -->
+  <div id="lightbox-modal" class="hidden fixed inset-0 z-[60] bg-black/92 backdrop-blur-md flex flex-col items-center justify-center p-4" role="dialog" aria-modal="true">
+    <button id="btn-close-lightbox" type="button" aria-label="關閉大圖檢視"
+      class="absolute top-4 right-4 w-11 h-11 rounded-full bg-forest-800/90 hover:bg-forest-700 border border-parchment-200/30 text-parchment-50 text-lg font-bold flex items-center justify-center shadow-lg cursor-pointer">
+      ✕
+    </button>
+    <div class="max-w-4xl w-full flex flex-col items-center space-y-3">
+      <img id="lightbox-img" src="" alt="" class="lightbox-photo max-h-[80vh] max-w-full rounded-2xl shadow-2xl object-contain border border-forest-700/70" />
+      <div class="text-center space-y-0.5">
+        <p id="lightbox-title" class="text-base sm:text-lg font-black text-parchment-50"></p>
+        <p id="lightbox-credit" class="text-xs text-parchment-200/70"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 賞鴞安全與生態守則彈出視窗 ==================== -->
+  <div id="ethics-modal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div class="modal-panel relative w-full max-w-lg max-h-[88vh] overflow-y-auto rounded-3xl bg-parchment-100 text-forest-950 border-2 border-parchment-300 shadow-2xl p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-parchment-300 pb-3">
+        <h2 class="text-xl font-black text-forest-950 flex items-center gap-2">
+          <span>🌿</span> 親子夜間賞鴞守則
+        </h2>
+        <button id="btn-close-ethics" type="button"
+          class="btn-secondary w-9 h-9 rounded-full bg-parchment-200 hover:bg-parchment-300 font-bold flex items-center justify-center cursor-pointer">✕</button>
+      </div>
+
+      <div class="space-y-3 text-sm leading-relaxed">
+        <div class="paper-subcard p-3.5 rounded-2xl bg-parchment-200/80 border border-parchment-300">
+          <h3 class="font-bold text-forest-900 mb-1">🚫 賞鴞三不原則</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-stone-700">
+            <li><strong>不強光直射眼睛</strong>：貓頭鷹夜視能力極強，手電筒請套上紅色玻璃紙或開最弱光，只照樹枝與地面。</li>
+            <li><strong>不播放鳥音誘鳥</strong>：在野外播放錄音會讓貓頭鷹誤以為有入侵者，耗費體力甚至放棄育雛。</li>
+            <li><strong>不喧嘩、不偏離步道</strong>：保持安靜更容易聽見叫聲，並避開深草叢與邊坡以防蛇類或跌倒。</li>
+          </ul>
+        </div>
+
+        <div class="paper-subcard p-3.5 rounded-2xl bg-amber-50 border border-amber-200">
+          <h3 class="font-bold text-amber-900 mb-1">🔎 給爸媽的實戰尋鴞 3 步驟</h3>
+          <ol class="list-decimal pl-5 space-y-1.5 text-stone-700">
+            <li><strong>白天找線索</strong>：散步時留意大樹下是否有「白色水狀鳥糞」或毛球狀的「食繭」，那是牠常停棲的樹。</li>
+            <li><strong>黃昏先用耳</strong>：日落後 1 小時（約 18:30–20:00）最常鳴叫，帶孩子站定不動聽音辨位。</li>
+            <li><strong>紅光掃眼耀</strong>：開啟本網頁「夜間紅光模式」，並以弱光手電筒與視線平行輕掃橫向枯枝，尋找兩顆並排的橘紅或黃色反光！</li>
+          </ol>
+        </div>
+      </div>
+
+      <button id="btn-ok-ethics" type="button"
+        class="btn-primary w-full py-3 rounded-xl bg-forest-800 hover:bg-forest-700 text-parchment-50 font-bold transition cursor-pointer">
+        我明白了，一起當森林守護者！
+      </button>
+    </div>
+  </div>
+
+  <!-- 輕量提示 Toast（絕不使用 alert） -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
+    <div id="toast-msg" class="px-4 py-2.5 rounded-full bg-forest-950/95 border border-ambercamp-500/60 text-parchment-50 text-xs sm:text-sm font-bold shadow-xl">
+      已自動儲存紀錄
+    </div>
+  </div>
+
+  <!-- ==================== JavaScript 核心邏輯 ==================== -->
+  <script>
+    /**
+     * 1. 台灣 6 種代表性貓頭鷹完整資料庫（含 Wikipedia & Wikimedia 查詢鍵值）
+     */
+    const OWLS = [
+      {
+        id: 'collared_scops',
+        name: '領角鴞',
+        enName: 'Collared Scops Owl',
+        enTitle: 'Collared_scops_owl',
+        zhTitle: '領角鴞',
+        sciName: 'Otus lettia',
+        level: '常見',
+        isCommon: true,
+        hasEars: true,
+        activity: 'nocturnal',
+        activityLabel: '夜行性',
+        sizeCm: '23–25 cm',
+        sizeMax: 25,
+        sizeRef: '約鴿子大小',
+        elevMin: 0,
+        elevMax: 1200,
+        elevText: '平地 ～ 1,200 公尺',
+        region: '全台平地至 1,200 公尺（公園、校園、果園、低海拔露營區皆常見，最親近人類）。',
+        callText: '單音節低沉「不——」，間隔約 4～5 秒，音調規律單調。',
+        callMnemonic: '像有人在吹空玻璃瓶的「呼——」聲',
+        callHint: '聲音很像吹空玻璃瓶，一聲一聲慢慢叫，平地公園與低海拔營區最常聽到！',
+        appearance: '體長約 23–25 cm（鴿子大小），頭頂有明顯兩撮「耳羽簇（耳朵）」、橘紅色大眼睛、全身灰褐色樹皮斑紋，停在樹幹上極具保護色。',
+        habitat: '低海拔次生林、果園、營區周邊大樹。夜晚喜歡停棲在開闊枯枝或路燈附近等待獵物（昆蟲、青蛙、小老鼠），常在固定大樹下留下白色水狀排遺與食繭。',
+        youtubeQuery: '領角鴞 叫聲 台灣'
+      },
+      {
+        id: 'mountain_scops',
+        name: '黃嘴角鴞',
+        enName: 'Mountain Scops Owl',
+        enTitle: 'Mountain_scops_owl',
+        zhTitle: '黃嘴角鴞',
+        sciName: 'Otus spilocephalus',
+        level: '常見',
+        isCommon: true,
+        hasEars: true,
+        activity: 'nocturnal',
+        activityLabel: '夜行性',
+        sizeCm: '17–20 cm',
+        sizeMax: 20,
+        sizeRef: '比領角鴞小一號',
+        elevMin: 300,
+        elevMax: 2000,
+        elevText: '300 ～ 2,000 公尺',
+        region: '全台海拔 300 至 2,000 公尺中低海拔山區，是山區露營常客。',
+        callText: '急促帶顫音的雙音或連音「吐壺、吐壺」或「不不不不——」。',
+        callMnemonic: '像小火車在爬坡「吐壺、吐壺」的急促顫音',
+        callHint: '聲音急促帶有顫音，像小火車爬坡一樣，長相有耳朵而且嘴巴是黃綠色的！',
+        appearance: '體長約 17–20 cm，頭頂有明顯耳羽簇、嘴喙呈獨特的「黃綠色」、鮮黃色眼睛。羽色有紅褐色與灰褐色兩種色型，相當可愛。',
+        habitat: '中低海拔濃密闊葉林與林道邊緣，偏好在森林下層至中層的枝葉間活動與覓食大型昆蟲。',
+        youtubeQuery: '黃嘴角鴞 叫聲 台灣'
+      },
+      {
+        id: 'brown_hawk',
+        name: '褐鷹鴞',
+        enName: 'Brown Boobook / Hawk-Owl',
+        enTitle: 'Brown_boobook',
+        zhTitle: '褐鷹鴞',
+        sciName: 'Ninox scutulata',
+        level: '常見',
+        isCommon: true,
+        hasEars: false,
+        activity: 'nocturnal',
+        activityLabel: '夜行性',
+        sizeCm: '29–32 cm',
+        sizeMax: 32,
+        sizeRef: '體型修長如小老鷹',
+        elevMin: 0,
+        elevMax: 1500,
+        elevText: '平地 ～ 1,500 公尺',
+        region: '全台平地至 1,500 公尺，特別常見於溪谷型、鄰近溪流的露營區。',
+        callText: '宏亮有節奏的雙音節「呼—呼、呼—呼」，第二音略微上揚。',
+        callMnemonic: '像在溪谷喊著「嗚—呼、嗚—呼」的宏亮二重唱',
+        callHint: '兩聲一組非常有節奏感，最喜歡出沒在溪流旁的露營區，頭頂圓圓沒有耳朵！',
+        appearance: '體長約 29–32 cm，頭頂圓滑「沒有耳羽簇」，外型與飛姿神似老鷹；擁有鮮黃色大眼睛，胸腹部有粗大的深褐色縱向條紋。',
+        habitat: '靠近溪流、河谷與水域的茂密森林。夜晚常站在溪畔高處開闊的枯枝上，俯衝捕食大型昆蟲、青蛙與小型脊椎動物。',
+        youtubeQuery: '褐鷹鴞 叫聲 台灣'
+      },
+      {
+        id: 'collared_owlet',
+        name: '鵂鶹',
+        enName: 'Collared Owlet',
+        enTitle: 'Collared_owlet',
+        zhTitle: '鵂鶹',
+        sciName: 'Glaucidium brodiei',
+        level: '常見',
+        isCommon: true,
+        hasEars: false,
+        activity: 'diurnal',
+        activityLabel: '日行性（白天可見）',
+        sizeCm: '約 15 cm',
+        sizeMax: 15,
+        sizeRef: '台灣最小，約拳頭大',
+        elevMin: 300,
+        elevMax: 2300,
+        elevText: '300 ～ 2,300 公尺',
+        region: '全台海拔 300 至 2,300 公尺山區樹林，白天散步就有機會巧遇。',
+        callText: '清脆響亮的四音節口哨聲「嘟—嘟嘟—嘟」（一長、兩短、一長）。',
+        callMnemonic: '像吹口哨打摩斯密碼「嘟—嘟嘟—嘟」',
+        callHint: '音色最清脆響亮，固定四音節（一長兩短一長），是台灣最小、白天也會活動的貓頭鷹！',
+        appearance: '體長僅約 15 cm（台灣體型最小的貓頭鷹，像顆小毛球），無耳羽簇。最特別的是「後腦勺有兩個黑色假眼斑紋」，用來嚇阻後方偷襲的天敵！',
+        habitat: '中低海拔闊葉林與針闊混合林。屬於「日行性」貓頭鷹，清晨、白天與黃昏常站在樹梢枯枝上鳴叫與狩獵小鳥、昆蟲。',
+        youtubeQuery: '鵂鶹 叫聲 台灣'
+      },
+      {
+        id: 'tawny_fish',
+        name: '黃魚鴞',
+        enName: 'Tawny Fish Owl',
+        enTitle: 'Tawny_fish_owl',
+        zhTitle: '黃魚鴞',
+        sciName: 'Ketupa flavipes',
+        level: '進階',
+        isCommon: false,
+        hasEars: true,
+        activity: 'nocturnal',
+        activityLabel: '夜行性',
+        sizeCm: '50–60 cm',
+        sizeMax: 60,
+        sizeRef: '台灣體型最大！',
+        elevMin: 0,
+        elevMax: 2000,
+        elevText: '2,000 公尺以下原始溪流',
+        region: '全台低至中海拔（約 2,000 公尺以下）水質清澈的原始溪流流域。',
+        callText: '低沉渾厚、帶有共鳴感的「呼—嗚——」或沙啞長音。',
+        callMnemonic: '低沉雄厚的溪谷大提琴「呼—嗚——」',
+        callHint: '聲音最低沉渾厚，是台灣體型最大的貓頭鷹，專門在清澈溪流裡抓魚吃！',
+        appearance: '體長高達 50–60 cm（台灣最大貓頭鷹），有明顯寬大且略微外斜的耳羽簇、金黃色大眼。最特別的是「腳趾無羽毛且具粗糙鱗片」，像防滑手套般方便抓滑溜的魚。',
+        habitat: '水質清澈、魚蝦螃蟹豐富的原始溪流與河床大石、溪畔巨木。黃昏與夜間會在水面附近俯衝抓魚，對環境潔淨度要求極高。',
+        youtubeQuery: '黃魚鴞 叫聲 台灣'
+      },
+      {
+        id: 'brown_wood',
+        name: '褐林鴞',
+        enName: 'Brown Wood Owl',
+        enTitle: 'Brown_wood_owl',
+        zhTitle: '褐林鴞',
+        sciName: 'Strix leptogrammica',
+        level: '進階',
+        isCommon: false,
+        hasEars: false,
+        activity: 'nocturnal',
+        activityLabel: '夜行性',
+        sizeCm: '45–50 cm',
+        sizeMax: 50,
+        sizeRef: '深山大型貓頭鷹',
+        elevMin: 800,
+        elevMax: 2500,
+        elevText: '800 ～ 2,500 公尺',
+        region: '全台海拔 800 至 2,500 公尺中高海拔原始森林。',
+        callText: '低沉神秘的三至四音節「呼、呼—呼—呼」，在深山夜裡迴盪。',
+        callMnemonic: '深山裡神秘的四連音「呼、呼—呼—呼」',
+        callHint: '在中高海拔原始深山夜裡迴盪的低沉四連音，臉圓圓的、沒有耳朵且有深黑眼眶！',
+        appearance: '體長約 45–50 cm（大型貓頭鷹），無耳羽簇，擁有圓潤的深褐色臉盤搭配黑褐色大眼與深色眼眶，腹部佈滿細密優雅的橫紋。',
+        habitat: '幽靜濃密的中高海拔原始闊葉林與針葉林，生性極為隱密，多在深夜於高大樹冠層活動，以飛鼠、鼠類等為主食。',
+        youtubeQuery: '褐林鴞 叫聲 台灣'
+      }
+    ];
+
+    /**
+     * 2. 真實生態照片載入引擎（三層保險機制 + 離線 SVG 備援）
+     *   第一層：English Wikipedia REST Summary API
+     *   第二層：Chinese Wikipedia REST Summary API
+     *   第三層：Wikimedia Commons Search API（依學名檢索圖片）
+     */
+    const PHOTO_CACHE_KEY = 'tw_owl_photo_cache_v1';
+    const photoStore = {}; // { [owlId]: { status: 'loading'|'loaded'|'offline', url: string|null, thumbUrl: string|null, sourceLabel: string } }
+
+    // 初始化所有貓頭鷹的照片狀態
+    OWLS.forEach(owl => {
+      photoStore[owl.id] = {
+        status: 'loading',
+        url: null,
+        thumbUrl: null,
+        sourceLabel: '載入真實生態照...'
+      };
+    });
+
+    function isValidPhotoUrl(url) {
+      if (!url || typeof url !== 'string') return false;
+      return /\.(jpe?g|png|webp)(\?.*)?$/i.test(url);
+    }
+
+    async function fetchWithTimeout(url, timeoutMs = 8000) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const res = await fetch(url, { signal: controller.signal });
+        clearTimeout(timer);
+        if (!res.ok) return null;
+        return await res.json();
+      } catch (err) {
+        clearTimeout(timer);
+        return null;
+      }
+    }
+
+    async function resolveOwlPhoto(owl) {
+      // 第一層：English Wikipedia REST API
+      const enApi = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(owl.enTitle)}`;
+      const enData = await fetchWithTimeout(enApi);
+      if (enData && (enData.originalimage?.source || enData.thumbnail?.source)) {
+        const orig = enData.originalimage?.source;
+        const thumb = enData.thumbnail?.source;
+        if (isValidPhotoUrl(orig) || isValidPhotoUrl(thumb)) {
+          return {
+            status: 'loaded',
+            url: isValidPhotoUrl(orig) ? orig : thumb,
+            thumbUrl: isValidPhotoUrl(thumb) ? thumb : orig,
+            sourceLabel: '真實生態照 · Wikimedia'
+          };
+        }
+      }
+
+      // 第二層：Chinese Wikipedia REST API
+      const zhApi = `https://zh.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(owl.zhTitle)}`;
+      const zhData = await fetchWithTimeout(zhApi);
+      if (zhData && (zhData.originalimage?.source || zhData.thumbnail?.source)) {
+        const orig = zhData.originalimage?.source;
+        const thumb = zhData.thumbnail?.source;
+        if (isValidPhotoUrl(orig) || isValidPhotoUrl(thumb)) {
+          return {
+            status: 'loaded',
+            url: isValidPhotoUrl(orig) ? orig : thumb,
+            thumbUrl: isValidPhotoUrl(thumb) ? thumb : orig,
+            sourceLabel: '真實生態照 · Wikimedia'
+          };
+        }
+      }
+
+      // 第三層：Wikimedia Commons API（以學名搜尋高畫質生態圖）
+      const commonsApi = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrsearch=${encodeURIComponent(owl.sciName)}&gsrlimit=5&prop=imageinfo&iiprop=url&iiurlwidth=800&origin=*&format=json`;
+      const commonsData = await fetchWithTimeout(commonsApi);
+      if (commonsData?.query?.pages) {
+        const pages = Object.values(commonsData.query.pages);
+        for (const page of pages) {
+          const info = page.imageinfo && page.imageinfo[0];
+          if (!info) continue;
+          const candidateUrl = info.thumburl || info.url;
+          const fullUrl = info.url || info.thumburl;
+          if (isValidPhotoUrl(candidateUrl) || isValidPhotoUrl(fullUrl)) {
+            return {
+              status: 'loaded',
+              url: isValidPhotoUrl(candidateUrl) ? candidateUrl : fullUrl,
+              thumbUrl: isValidPhotoUrl(candidateUrl) ? candidateUrl : fullUrl,
+              sourceLabel: '真實生態照 · Wikimedia'
+            };
+          }
+        }
+      }
+
+      // 離線備援：無法連線或查無照片時切換為原創 SVG 特徵圖解
+      return {
+        status: 'offline',
+        url: null,
+        thumbUrl: null,
+        sourceLabel: '離線特徵圖解'
+      };
+    }
+
+    async function loadAllOwlPhotos() {
+      // 先嘗試讀取當次瀏覽 sessionStorage 快取，加速切換
+      let cached = {};
+      try {
+        const raw = sessionStorage.getItem(PHOTO_CACHE_KEY);
+        if (raw) cached = JSON.parse(raw);
+      } catch (e) {}
+
+      const tasks = OWLS.map(async (owl) => {
+        if (cached[owl.id] && cached[owl.id].status === 'loaded' && cached[owl.id].url) {
+          photoStore[owl.id] = cached[owl.id];
+          refreshViewsForPhotos();
+          return;
+        }
+        const result = await resolveOwlPhoto(owl);
+        photoStore[owl.id] = result;
+        if (result.status === 'loaded') {
+          cached[owl.id] = result;
+          try {
+            sessionStorage.setItem(PHOTO_CACHE_KEY, JSON.stringify(cached));
+          } catch (e) {}
+        }
+        refreshViewsForPhotos();
+      });
+
+      await Promise.allSettled(tasks);
+    }
+
+    function refreshViewsForPhotos() {
+      if (appState.activeTab === 'guide') renderOwlGrid();
+      if (appState.activeTab === 'log') renderLogList();
+      if (currentDetailId) renderDetailModal();
+      if (appState.activeTab === 'quiz' && appState.quiz.answered) {
+        updateQuizRevealPhoto();
+      }
+    }
+
+    // 圖片載入失敗時自動降級為離線 SVG 插畫
+    window.handlePhotoError = function (owlId) {
+      const entry = photoStore[owlId];
+      if (!entry) return;
+      // 若原圖失敗但還有縮圖不同，先試縮圖
+      if (entry.thumbUrl && entry.url !== entry.thumbUrl) {
+        entry.url = entry.thumbUrl;
+        refreshViewsForPhotos();
+        return;
+      }
+      photoStore[owlId] = {
+        status: 'offline',
+        url: null,
+        thumbUrl: null,
+        sourceLabel: '離線特徵圖解'
+      };
+      refreshViewsForPhotos();
+    };
+
+    /**
+     * 3. Web Audio API 離線貓頭鷹叫聲合成引擎
+     */
+    class OwlAudioEngine {
+      constructor() {
+        this.ctx = null;
+        this.isPlaying = false;
+        this.currentId = null;
+        this.loopTimer = null;
+        this.activeNodes = [];
+        this.onStateChange = null;
+      }
+
+      ensureContext() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioCtx();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      stop() {
+        this.isPlaying = false;
+        const prevId = this.currentId;
+        this.currentId = null;
+        if (this.loopTimer) {
+          clearTimeout(this.loopTimer);
+          this.loopTimer = null;
+        }
+        this.activeNodes.forEach(node => {
+          try {
+            if (node.stop) node.stop();
+            if (node.disconnect) node.disconnect();
+          } catch (e) {}
+        });
+        this.activeNodes = [];
+        if (this.onStateChange) this.onStateChange(null, prevId);
+      }
+
+      toggle(owlId, contextKey = owlId) {
+        if (this.isPlaying && this.currentId === contextKey) {
+          this.stop();
+          return false;
+        }
+        this.play(owlId, contextKey);
+        return true;
+      }
+
+      play(owlId, contextKey = owlId) {
+        this.stop();
+        try {
+          this.ensureContext();
+        } catch (e) {
+          showToast('瀏覽器尚未啟用音訊播放，請再點擊一次');
+          return;
+        }
+        this.isPlaying = true;
+        this.currentId = contextKey;
+        if (this.onStateChange) this.onStateChange(contextKey, null);
+
+        const triggerPattern = () => {
+          if (!this.isPlaying || this.currentId !== contextKey) return;
+          const now = this.ctx.currentTime + 0.03;
+          let nextDelayMs = 2400;
+
+          switch (owlId) {
+            case 'collared_scops':
+              this._playTone(now, 0.48, 435, 412, 'sine', 0.32, 0.07, 0.14);
+              this._playTone(now, 0.44, 870, 824, 'sine', 0.03, 0.08, 0.14);
+              nextDelayMs = 2400;
+              break;
+            case 'mountain_scops':
+              this._playTrill(now, 0.14, 710, 745, 28, 0.24);
+              this._playTrill(now + 0.19, 0.17, 730, 695, 30, 0.26);
+              this._playTrill(now + 0.52, 0.14, 715, 750, 28, 0.24);
+              this._playTrill(now + 0.71, 0.18, 735, 690, 30, 0.26);
+              nextDelayMs = 2100;
+              break;
+            case 'brown_hawk':
+              this._playTone(now, 0.26, 375, 390, 'triangle', 0.26, 0.04, 0.08, 900);
+              this._playTone(now + 0.34, 0.34, 445, 470, 'triangle', 0.30, 0.04, 0.10, 1000);
+              this._playTone(now + 1.05, 0.26, 375, 390, 'triangle', 0.26, 0.04, 0.08, 900);
+              this._playTone(now + 1.39, 0.34, 445, 470, 'triangle', 0.30, 0.04, 0.10, 1000);
+              nextDelayMs = 2700;
+              break;
+            case 'collared_owlet':
+              this._playTone(now, 0.34, 1210, 1235, 'sine', 0.22, 0.025, 0.05);
+              this._playTone(now + 0.50, 0.13, 1230, 1210, 'sine', 0.22, 0.02, 0.03);
+              this._playTone(now + 0.70, 0.13, 1230, 1210, 'sine', 0.22, 0.02, 0.03);
+              this._playTone(now + 0.98, 0.38, 1215, 1190, 'sine', 0.24, 0.025, 0.06);
+              nextDelayMs = 2500;
+              break;
+            case 'tawny_fish':
+              this._playTone(now, 0.32, 245, 275, 'triangle', 0.34, 0.08, 0.08, 520);
+              this._playTone(now + 0.36, 0.78, 270, 225, 'triangle', 0.36, 0.09, 0.22, 480);
+              this._playTone(now + 0.36, 0.75, 135, 112, 'sine', 0.14, 0.1, 0.22);
+              nextDelayMs = 2600;
+              break;
+            case 'brown_wood':
+              this._playTone(now, 0.22, 315, 305, 'sine', 0.28, 0.04, 0.06);
+              this._playTone(now + 0.52, 0.26, 330, 318, 'sine', 0.30, 0.04, 0.07);
+              this._playTone(now + 0.90, 0.26, 325, 310, 'sine', 0.30, 0.04, 0.07);
+              this._playTone(now + 1.28, 0.52, 315, 275, 'sine', 0.32, 0.05, 0.16);
+              nextDelayMs = 2900;
+              break;
+          }
+          this.loopTimer = setTimeout(triggerPattern, nextDelayMs);
+        };
+        triggerPattern();
+      }
+
+      _playTone(startTime, duration, freqStart, freqEnd, type, peakGain, attack, release, lowpassHz = null) {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freqStart, startTime);
+        osc.frequency.exponentialRampToValueAtTime(Math.max(40, freqEnd), startTime + duration);
+
+        gain.gain.setValueAtTime(0.0001, startTime);
+        gain.gain.linearRampToValueAtTime(peakGain, startTime + attack);
+        gain.gain.setValueAtTime(peakGain, Math.max(startTime + attack, startTime + duration - release));
+        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+        if (lowpassHz) {
+          const filter = this.ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(lowpassHz, startTime);
+          osc.connect(filter);
+          filter.connect(gain);
+          this.activeNodes.push(filter);
+        } else {
+          osc.connect(gain);
+        }
+
+        gain.connect(this.ctx.destination);
+        osc.start(startTime);
+        osc.stop(startTime + duration + 0.02);
+        this.activeNodes.push(osc, gain);
+      }
+
+      _playTrill(startTime, duration, freqStart, freqEnd, lfoRate, peakGain) {
+        const osc = this.ctx.createOscillator();
+        const lfo = this.ctx.createOscillator();
+        const lfoGain = this.ctx.createGain();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freqStart, startTime);
+        osc.frequency.linearRampToValueAtTime(freqEnd, startTime + duration);
+
+        lfo.frequency.setValueAtTime(lfoRate, startTime);
+        lfoGain.gain.setValueAtTime(28, startTime);
+        lfo.connect(lfoGain);
+        lfoGain.connect(osc.frequency);
+
+        gain.gain.setValueAtTime(0.0001, startTime);
+        gain.gain.linearRampToValueAtTime(peakGain, startTime + 0.025);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(startTime);
+        lfo.start(startTime);
+        osc.stop(startTime + duration + 0.02);
+        lfo.stop(startTime + duration + 0.02);
+        this.activeNodes.push(osc, lfo, lfoGain, gain);
+      }
+    }
+
+    const audioEngine = new OwlAudioEngine();
+
+    /**
+     * 4. 原創精細 SVG 貓頭鷹特徵圖解（離線備援 + 鵂鶹後腦假眼圖解）
+     */
+    function getOwlSVG(id, isBackView = false) {
+      if (id === 'collared_owlet' && isBackView) {
+        return `
+          <svg viewBox="0 0 240 160" class="w-full h-full" aria-label="鵂鶹後腦勺假眼圖解">
+            <rect width="240" height="160" fill="#1e3528"/>
+            <path d="M25 142 Q120 132 215 144" stroke="#6c4d35" stroke-width="9" stroke-linecap="round" fill="none"/>
+            <ellipse cx="120" cy="102" rx="40" ry="42" fill="#6d5642"/>
+            <path d="M90 94 Q120 99 150 94 M86 106 Q120 111 154 106 M90 118 Q120 123 150 118" stroke="#cbb89d" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.75"/>
+            <circle cx="120" cy="60" r="31" fill="#755c47"/>
+            <path d="M92 75 Q120 86 148 75" stroke="#eadcc5" stroke-width="11" stroke-linecap="round" fill="none"/>
+            <!-- 兩個黑色「假眼」斑紋 -->
+            <ellipse cx="105" cy="74" rx="8.5" ry="6.5" fill="#161413"/>
+            <ellipse cx="135" cy="74" rx="8.5" ry="6.5" fill="#161413"/>
+            <path d="M97 68 Q105 64 113 68" stroke="#f7eedd" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <path d="M127 68 Q135 64 143 68" stroke="#f7eedd" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <path d="M110 136 L113 152 L127 152 L130 136 Z" fill="#594433"/>
+            <rect x="52" y="10" width="136" height="22" rx="11" fill="#e8a849"/>
+            <text x="120" y="25" text-anchor="middle" font-size="11" font-weight="800" fill="#0f1f17">後腦勺假眼圖解（背面）</text>
+          </svg>
+        `;
+      }
+
+      const configs = {
+        collared_scops: {
+          bg: '#162b20', moon: true, body: '#7c6f64', belly: '#c6b8a6', wing: '#5b5047',
+          ears: 'medium', earColor: '#5b5047', eyeColor: '#e85d22', beakColor: '#5c554c',
+          pattern: 'bark', collar: '#dfd2be', feet: 'feathered'
+        },
+        mountain_scops: {
+          bg: '#172e23', moon: true, body: '#8f5236', belly: '#d9b596', wing: '#6e3a24',
+          ears: 'sharp', earColor: '#6e3a24', eyeColor: '#facc15', beakColor: '#c9d645',
+          pattern: 'spots', collar: '#e8cfa9', feet: 'feathered'
+        },
+        brown_hawk: {
+          bg: '#13272c', moon: true, body: '#5a4438', belly: '#efe4d2', wing: '#433128',
+          ears: 'none', earColor: '#5a4438', eyeColor: '#facc15', beakColor: '#3f3a36',
+          pattern: 'streaks', collar: null, feet: 'feathered'
+        },
+        collared_owlet: {
+          bg: '#233f2f', moon: false, body: '#7d634d', belly: '#ece2d0', wing: '#5e4836',
+          ears: 'none', earColor: '#7d634d', eyeColor: '#fde047', beakColor: '#d9c562',
+          pattern: 'owlet', collar: '#f3e7d3', feet: 'feathered'
+        },
+        tawny_fish: {
+          bg: '#12252a', moon: true, body: '#a87846', belly: '#d9b27c', wing: '#7d5630',
+          ears: 'wide', earColor: '#8c6137', eyeColor: '#fbbf24', beakColor: '#665e55',
+          pattern: 'heavy', collar: '#f2e6d5', feet: 'scaly'
+        },
+        brown_wood: {
+          bg: '#111d18', moon: true, body: '#5c4033', belly: '#d4b898', wing: '#422c22',
+          ears: 'none', earColor: '#5c4033', eyeColor: '#1f1612', beakColor: '#c9b38c',
+          pattern: 'bars', collar: null, feet: 'feathered', darkDisc: true
+        }
+      };
+
+      const c = configs[id] || configs.collared_scops;
+
+      let earsSVG = '';
+      if (c.ears === 'medium') {
+        earsSVG = `<path d="M94 52 L82 26 L106 44 Z" fill="${c.earColor}"/><path d="M146 52 L158 26 L134 44 Z" fill="${c.earColor}"/>`;
+      } else if (c.ears === 'sharp') {
+        earsSVG = `<path d="M96 54 L80 24 L108 44 Z" fill="${c.earColor}"/><path d="M144 54 L160 24 L132 44 Z" fill="${c.earColor}"/>`;
+      } else if (c.ears === 'wide') {
+        earsSVG = `<path d="M92 50 L66 32 L102 40 Z" fill="${c.earColor}"/><path d="M148 50 L174 32 L138 40 Z" fill="${c.earColor}"/>`;
+      }
+
+      const skyDeco = c.moon
+        ? `<circle cx="198" cy="30" r="12" fill="#f4d58d" opacity="0.85"/><circle cx="203" cy="27" r="10" fill="${c.bg}"/>`
+        : `<circle cx="198" cy="30" r="12" fill="#fde047" opacity="0.9"/><circle cx="198" cy="30" r="18" fill="#fde047" opacity="0.16"/>`;
+
+      const faceDisc = c.darkDisc
+        ? `<circle cx="107" cy="64" r="14" fill="#3a251c" stroke="#c8ab8a" stroke-width="2"/><circle cx="133" cy="64" r="14" fill="#3a251c" stroke="#c8ab8a" stroke-width="2"/>`
+        : `<circle cx="107" cy="64" r="13" fill="${c.belly}" opacity="0.72"/><circle cx="133" cy="64" r="13" fill="${c.belly}" opacity="0.72"/>`;
+
+      const pupilSVG = c.darkDisc
+        ? `<circle cx="107" cy="64" r="8" fill="#17100c"/><circle cx="133" cy="64" r="8" fill="#17100c"/><circle cx="104.5" cy="61.5" r="2.2" fill="#fff"/><circle cx="130.5" cy="61.5" r="2.2" fill="#fff"/>`
+        : `<circle cx="107" cy="64" r="8.5" fill="${c.eyeColor}" stroke="#261c15" stroke-width="1.6"/><circle cx="133" cy="64" r="8.5" fill="${c.eyeColor}" stroke="#261c15" stroke-width="1.6"/><circle cx="107" cy="64" r="4" fill="#14110f"/><circle cx="133" cy="64" r="4" fill="#14110f"/><circle cx="105" cy="62" r="1.8" fill="#fff"/><circle cx="131" cy="62" r="1.8" fill="#fff"/>`;
+
+      return `
+        <svg viewBox="0 0 240 160" class="w-full h-full" aria-label="${id} 貓頭鷹離線特徵圖解">
+          <rect width="240" height="160" fill="${c.bg}"/>
+          ${skyDeco}
+          <path d="M24 144 Q120 135 216 145" stroke="#6c4d35" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <ellipse cx="88" cy="108" rx="15" ry="30" transform="rotate(10 88 108)" fill="${c.wing}"/>
+          <ellipse cx="152" cy="108" rx="15" ry="30" transform="rotate(-10 152 108)" fill="${c.wing}"/>
+          <ellipse cx="120" cy="108" rx="34" ry="36" fill="${c.body}"/>
+          <ellipse cx="120" cy="112" rx="25" ry="29" fill="${c.belly}"/>
+          ${c.collar ? `<path d="M98 88 Q120 96 142 88" stroke="${c.collar}" stroke-width="6" stroke-linecap="round" fill="none"/>` : ''}
+          ${earsSVG}
+          <circle cx="120" cy="64" r="28" fill="${c.body}"/>
+          ${faceDisc}
+          ${pupilSVG}
+          <path d="M115 71 L125 71 L120 81 Z" fill="${c.beakColor}" stroke="#2b211a" stroke-width="1"/>
+        </svg>
+      `;
+    }
+
+    /**
+     * 通用媒體視覺元件渲染器（支援真實生態照 + 淡入 + 來源角標 + 離線 SVG 備援）
+     */
+    function renderOwlMediaHTML(owl, { isBackView = false, clickableZoom = false, compact = false } = {}) {
+      const photo = photoStore[owl.id];
+      const showBackSVG = owl.id === 'collared_owlet' && isBackView;
+
+      // 若是鵂鶹且使用者切換到「後腦假眼圖解」
+      if (showBackSVG) {
+        return `
+          <div class="owl-svg-wrap relative w-full h-full bg-forest-900">
+            ${getOwlSVG(owl.id, true)}
+          </div>
+        `;
+      }
+
+      // 真實生態照片載入成功
+      if (photo && photo.status === 'loaded' && photo.url) {
+        const safeUrl = photo.url.replace(/"/g, '&quot;');
+        const zoomAttr = clickableZoom ? `onclick="openLightbox('${owl.id}')"` : '';
+        const zoomCursor = clickableZoom ? 'cursor-zoom-in' : '';
+        return `
+          <div class="relative w-full h-full photo-shimmer overflow-hidden ${zoomCursor}" ${zoomAttr}>
+            <img
+              src="${safeUrl}"
+              alt="${owl.name}（${owl.enName}）野生生態照"
+              loading="lazy"
+              decoding="async"
+              referrerpolicy="no-referrer"
+              onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('photo-shimmer');"
+              onerror="handlePhotoError('${owl.id}')"
+              class="owl-real-photo opacity-0 w-full h-full block"
+            />
+            ${!compact ? `
+              <span class="pointer-events-none absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-sm text-[10px] font-medium text-parchment-100/95 border border-white/15">
+                📷 ${photo.sourceLabel}
+              </span>
+            ` : ''}
+            ${clickableZoom ? `
+              <button type="button" onclick="event.stopPropagation(); openLightbox('${owl.id}')"
+                class="btn-secondary absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/65 hover:bg-black/80 text-parchment-50 text-[11px] font-bold border border-white/20 backdrop-blur-sm flex items-center gap-1 transition cursor-pointer">
+                <span>🔍</span><span>放大檢視</span>
+              </button>
+            ` : ''}
+          </div>
+        `;
+      }
+
+      // 載入中骨架或離線備援 SVG
+      const isLoading = photo && photo.status === 'loading';
+      return `
+        <div class="owl-svg-wrap relative w-full h-full ${isLoading ? 'photo-shimmer' : 'bg-forest-900'}">
+          ${getOwlSVG(owl.id, false)}
+          ${!compact ? `
+            <span class="pointer-events-none absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-sm text-[10px] font-medium text-parchment-100/90 border border-white/15">
+              ${isLoading ? '⏳ 載入真實生態照...' : '🎨 離線特徵圖解'}
+            </span>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    /**
+     * 5. 狀態管理與 localStorage（尋鴞紀錄簿 & 紅光模式 & 測驗紀錄）
+     */
+    const STORAGE_KEY = 'tw_owl_field_guide_v1';
+    let appState = {
+      activeTab: 'guide',
+      redLight: false,
+      owletBackView: false,
+      filters: { elev: 'all', ears: 'all', activity: 'all' },
+      logs: {},
+      quiz: {
+        currentOwl: null,
+        options: [],
+        answered: false,
+        streak: 0,
+        bestStreak: 0
+      }
+    };
+
+    function loadSavedData() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed.logs) appState.logs = parsed.logs;
+          if (typeof parsed.bestStreak === 'number') appState.quiz.bestStreak = parsed.bestStreak;
+          if (typeof parsed.redLight === 'boolean') appState.redLight = parsed.redLight;
+        }
+      } catch (e) {
+        console.warn('無法讀取本機紀錄:', e);
+      }
+      OWLS.forEach(o => {
+        if (!appState.logs[o.id]) {
+          appState.logs[o.id] = { heard: false, seen: false, date: '', note: '' };
+        }
+      });
+    }
+
+    function saveData(silent = false) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          logs: appState.logs,
+          bestStreak: appState.quiz.bestStreak,
+          redLight: appState.redLight
+        }));
+        if (!silent) showToast('已自動儲存尋鴞紀錄 🏕️');
+      } catch (e) {
+        console.warn('儲存失敗:', e);
+      }
+      updateLogBadges();
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-msg');
+      msgEl.textContent = msg;
+      el.classList.remove('opacity-0');
+      el.classList.add('opacity-100');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        el.classList.remove('opacity-100');
+        el.classList.add('opacity-0');
+      }, 2000);
+    }
+
+    /**
+     * 6. 渲染圖鑑探索卡片
+     */
+    function getFilteredOwls() {
+      return OWLS.filter(owl => {
+        const { elev, ears, activity } = appState.filters;
+        if (elev === 'low' && !(owl.elevMin <= 500)) return false;
+        if (elev === 'mid' && !(owl.elevMax >= 1000)) return false;
+
+        if (ears === 'yes' && !owl.hasEars) return false;
+        if (ears === 'no' && owl.hasEars) return false;
+
+        if (activity !== 'all' && owl.activity !== activity) return false;
+        return true;
+      });
+    }
+
+    function renderElevationBar(elevMin, elevMax) {
+      const maxScale = 2500;
+      const leftPct = Math.max(0, (elevMin / maxScale) * 100);
+      const widthPct = Math.min(100 - leftPct, ((elevMax - elevMin) / maxScale) * 100);
+      return `
+        <div class="space-y-1">
+          <div class="flex justify-between text-[11px] font-medium text-stone-600">
+            <span>⛰️ 海拔分布：${elevMin === 0 ? '平地' : elevMin + 'm'} ～ ${elevMax}m</span>
+            <span class="text-[10px] opacity-75">0–2500m</span>
+          </div>
+          <div class="elev-track relative h-2.5 w-full rounded-full bg-parchment-300 overflow-hidden">
+            <div class="elev-fill absolute top-0 bottom-0 rounded-full bg-gradient-to-r from-emerald-600 to-ambercamp-500"
+                 style="left: ${leftPct}%; width: ${Math.max(12, widthPct)}%;"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderOwlGrid() {
+      const grid = document.getElementById('owl-grid');
+      const empty = document.getElementById('empty-state');
+      const list = getFilteredOwls();
+
+      if (list.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      grid.innerHTML = list.map(owl => {
+        const log = appState.logs[owl.id];
+        const isPlayingThis = audioEngine.isPlaying && audioEngine.currentId === `card-${owl.id}`;
+        const sizePct = Math.round((owl.sizeMax / 60) * 100);
+        const isBack = owl.id === 'collared_owlet' && appState.owletBackView;
+
+        return `
+          <article class="owl-card paper-card rounded-3xl bg-parchment-100 text-forest-950 border-2 border-parchment-300 shadow-xl overflow-hidden flex flex-col">
+            <!-- 大面積 16:10 真實照片區塊 -->
+            <div class="relative w-full aspect-[16/10] bg-forest-900 overflow-hidden">
+              ${renderOwlMediaHTML(owl, { isBackView: isBack, clickableZoom: false })}
+
+              <!-- 右上角分類標籤 -->
+              <div class="pointer-events-none absolute top-2.5 right-2.5 flex flex-wrap justify-end gap-1.5">
+                <span class="badge-accent px-2.5 py-0.5 rounded-full text-[11px] font-bold shadow ${owl.isCommon ? 'bg-ambercamp-500 text-forest-950' : 'bg-forest-900/90 text-parchment-100 border border-white/15'}">
+                  ${owl.isCommon ? '⭐ 露營常見' : '🏔️ 進階探索'}
+                </span>
+                <span class="badge-accent px-2.5 py-0.5 rounded-full text-[11px] font-bold shadow ${owl.activity === 'diurnal' ? 'bg-yellow-300 text-yellow-950' : 'bg-forest-950/85 text-parchment-100 border border-white/15'}">
+                  ${owl.activity === 'diurnal' ? '☀️ 日行性' : '🌙 夜行性'}
+                </span>
+              </div>
+
+              <!-- 鵂鶹專屬：切換真實照片 / 後腦假眼圖解按鈕 -->
+              ${owl.id === 'collared_owlet' ? `
+                <button type="button" onclick="toggleOwletFlip(event)"
+                  class="btn-primary absolute bottom-2 right-2 z-10 px-2.5 py-1.5 rounded-xl bg-ambercamp-500 hover:bg-ambercamp-400 text-forest-950 text-[11px] font-black shadow-lg flex items-center gap-1 transition cursor-pointer">
+                  <span>🔄</span><span>${isBack ? '切換真實照片' : '查看後腦假眼圖解'}</span>
+                </button>
+              ` : ''}
+            </div>
+
+            <!-- 卡片資訊主體 -->
+            <div class="p-4 flex-1 flex flex-col justify-between space-y-3.5">
+              <div class="space-y-3">
+                <!-- 名稱與耳朵標籤 -->
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <h3 class="text-xl font-black text-forest-950 leading-tight">${owl.name}</h3>
+                    <p class="text-xs text-stone-500 font-medium">${owl.enName}</p>
+                  </div>
+                  <span class="shrink-0 px-2 py-0.5 rounded-lg bg-parchment-200 border border-parchment-300 text-[11px] font-bold text-stone-600 paper-subcard">
+                    ${owl.hasEars ? '有耳羽簇' : '圓頭無耳'}
+                  </span>
+                </div>
+
+                <!-- 叫聲模擬播放器 -->
+                <div class="paper-subcard rounded-2xl bg-parchment-200/90 border border-parchment-300 p-3 space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <button type="button" onclick="handleCardPlay('${owl.id}')"
+                      class="btn-primary flex items-center gap-2 px-3.5 py-2 rounded-xl bg-forest-800 hover:bg-forest-700 text-parchment-50 text-xs font-bold transition shadow-sm cursor-pointer">
+                      <span>${isPlayingThis ? '⏹️ 停止' : '▶️ 聽叫聲'}</span>
+                    </button>
+                    <!-- 動態音波 -->
+                    <div class="flex items-center gap-1 h-5 ${isPlayingThis ? 'playing' : ''}">
+                      <span class="wave-bar w-1 h-2.5 bg-ambercamp-600 rounded-full"></span>
+                      <span class="wave-bar w-1 h-4 bg-ambercamp-600 rounded-full"></span>
+                      <span class="wave-bar w-1 h-5 bg-ambercamp-600 rounded-full"></span>
+                      <span class="wave-bar w-1 h-3.5 bg-ambercamp-600 rounded-full"></span>
+                      <span class="wave-bar w-1 h-2 bg-ambercamp-600 rounded-full"></span>
+                    </div>
+                  </div>
+                  <p class="text-xs text-forest-900 font-bold leading-snug">
+                    🎵 口訣：${owl.callMnemonic}
+                  </p>
+                  <p class="text-[10px] text-stone-500">離線模擬參考音（無網路山區也能聽）</p>
+                </div>
+
+                <!-- 海拔分布條 & 體型比例 -->
+                <div class="space-y-2.5">
+                  ${renderElevationBar(owl.elevMin, owl.elevMax)}
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-[11px] font-medium text-stone-600">
+                      <span>📏 體長：${owl.sizeCm}</span>
+                      <span>${owl.sizeRef}</span>
+                    </div>
+                    <div class="elev-track h-2 w-full rounded-full bg-parchment-300 overflow-hidden">
+                      <div class="elev-fill h-full rounded-full bg-forest-700" style="width: ${sizePct}%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 精簡棲地特徵 -->
+                <p class="text-xs text-stone-700 leading-relaxed line-clamp-2">
+                  <strong class="text-forest-900">棲地：</strong>${owl.habitat}
+                </p>
+              </div>
+
+              <!-- 底部互動列：快速勾選紀錄 & 詳情按鈕 -->
+              <div class="pt-2 border-t border-parchment-300 flex items-center justify-between gap-2">
+                <div class="flex items-center gap-1.5">
+                  <button type="button" onclick="quickToggleLog('${owl.id}', 'heard')"
+                    class="filter-pill px-2.5 py-1.5 rounded-lg text-[11px] font-bold border transition cursor-pointer ${log.heard ? 'active-pill bg-emerald-700 text-white border-emerald-800' : 'bg-parchment-50 text-stone-600 border-parchment-300 hover:bg-parchment-200'}">
+                    👂 ${log.heard ? '已聽過' : '聽過'}
+                  </button>
+                  <button type="button" onclick="quickToggleLog('${owl.id}', 'seen')"
+                    class="filter-pill px-2.5 py-1.5 rounded-lg text-[11px] font-bold border transition cursor-pointer ${log.seen ? 'active-pill bg-ambercamp-500 text-forest-950 border-ambercamp-600' : 'bg-parchment-50 text-stone-600 border-parchment-300 hover:bg-parchment-200'}">
+                    👀 ${log.seen ? '已看到' : '看到'}
+                  </button>
+                </div>
+
+                <button type="button" onclick="openDetailModal('${owl.id}')"
+                  class="text-xs font-black text-forest-800 hover:text-ambercamp-600 px-2 py-1.5 rounded-lg transition cursor-pointer">
+                  詳細圖鑑 ➡️
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    /**
+     * 7. 貓頭鷹詳情彈窗 & 大圖放大檢視（Lightbox）
+     */
+    let currentDetailId = null;
+
+    function openDetailModal(owlId) {
+      currentDetailId = owlId;
+      renderDetailModal();
+      document.getElementById('detail-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDetailModal() {
+      currentDetailId = null;
+      document.getElementById('detail-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+      if (audioEngine.currentId && audioEngine.currentId.startsWith('modal-')) {
+        audioEngine.stop();
+      }
+    }
+
+    window.openLightbox = function (owlId) {
+      const owl = OWLS.find(o => o.id === owlId);
+      const photo = photoStore[owlId];
+      if (!owl || !photo || photo.status !== 'loaded' || !photo.url) return;
+
+      const img = document.getElementById('lightbox-img');
+      img.src = photo.url;
+      img.alt = `${owl.name} 真實生態大圖`;
+      document.getElementById('lightbox-title').textContent = `${owl.name}（${owl.enName} / ${owl.sciName}）`;
+      document.getElementById('lightbox-credit').textContent = `照片來源：${photo.sourceLabel}（點擊任意背景或右上角 ✕ 關閉）`;
+      document.getElementById('lightbox-modal').classList.remove('hidden');
+    };
+
+    function closeLightbox() {
+      document.getElementById('lightbox-modal').classList.add('hidden');
+    }
+
+    function renderDetailModal() {
+      if (!currentDetailId) return;
+      const owl = OWLS.find(o => o.id === currentDetailId);
+      if (!owl) return;
+      const log = appState.logs[owl.id];
+      const isPlayingThis = audioEngine.isPlaying && audioEngine.currentId === `modal-${owl.id}`;
+      const isBack = owl.id === 'collared_owlet' && appState.owletBackView;
+      const ytUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(owl.youtubeQuery)}`;
+
+      document.getElementById('detail-content').innerHTML = `
+        <!-- 頂部大張真實生態照片（支援點擊放大） -->
+        <div class="space-y-4">
+          <div class="relative w-full aspect-[16/10] max-h-72 rounded-2xl overflow-hidden bg-forest-900 shadow-lg">
+            ${renderOwlMediaHTML(owl, { isBackView: isBack, clickableZoom: !isBack })}
+            ${owl.id === 'collared_owlet' ? `
+              <button type="button" onclick="toggleOwletFlip(event)"
+                class="btn-primary absolute bottom-2.5 right-2.5 z-10 px-3 py-1.5 rounded-xl bg-ambercamp-500 hover:bg-ambercamp-400 text-forest-950 text-xs font-black shadow-lg flex items-center gap-1 transition cursor-pointer">
+                <span>🔄</span><span>${isBack ? '切換真實照片' : '查看後腦假眼圖解'}</span>
+              </button>
+            ` : ''}
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="badge-accent px-2.5 py-0.5 rounded-full text-xs font-bold ${owl.isCommon ? 'bg-amber-200 text-amber-900' : 'bg-forest-800 text-parchment-100'}">${owl.isCommon ? '⭐ 露營常見種' : '🏔️ 進階探索種'}</span>
+              <span class="badge-accent px-2.5 py-0.5 rounded-full text-xs font-bold bg-parchment-200 text-forest-900">${owl.activityLabel}</span>
+              <span class="badge-accent px-2.5 py-0.5 rounded-full text-xs font-bold bg-parchment-200 text-forest-900">${owl.hasEars ? '有耳羽簇' : '無耳羽簇'}</span>
+            </div>
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-black text-forest-950">${owl.name}</h2>
+                <p class="text-xs sm:text-sm text-stone-500 font-medium">${owl.enName} · <em>${owl.sciName}</em> · 體長 ${owl.sizeCm}</p>
+              </div>
+              <!-- 快速紀錄按鈕 -->
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="quickToggleLog('${owl.id}', 'heard')"
+                  class="filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border cursor-pointer ${log.heard ? 'active-pill bg-emerald-700 text-white border-emerald-800' : 'bg-parchment-200 text-stone-700 border-parchment-300'}">
+                  👂 ${log.heard ? '已聽過 ✓' : '標記聽過'}
+                </button>
+                <button type="button" onclick="quickToggleLog('${owl.id}', 'seen')"
+                  class="filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border cursor-pointer ${log.seen ? 'active-pill bg-ambercamp-500 text-forest-950 border-ambercamp-600' : 'bg-parchment-200 text-stone-700 border-parchment-300'}">
+                  👀 ${log.seen ? '已看到 ✓' : '標記看到'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 叫聲與離線播放器區塊 -->
+        <div class="paper-subcard rounded-2xl bg-parchment-200/90 border border-parchment-300 p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="text-sm font-black text-forest-950 flex items-center gap-1.5">
+              <span>🔊</span> 叫聲特徵與離線模擬音
+            </h3>
+            <span class="text-[11px] text-stone-500">無網路山區也能離線播放</span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <button type="button" onclick="handleModalPlay('${owl.id}')"
+              class="btn-primary px-4 py-2.5 rounded-xl bg-forest-800 hover:bg-forest-700 text-parchment-50 text-sm font-bold flex items-center gap-2 shadow cursor-pointer">
+              <span>${isPlayingThis ? '⏹️ 停止模擬音' : '▶️ 播放離線模擬音'}</span>
+            </button>
+
+            <div class="flex items-center gap-1 h-6 ${isPlayingThis ? 'playing' : ''}">
+              <span class="wave-bar w-1.5 h-3 bg-ambercamp-600 rounded-full"></span>
+              <span class="wave-bar w-1.5 h-5 bg-ambercamp-600 rounded-full"></span>
+              <span class="wave-bar w-1.5 h-6 bg-ambercamp-600 rounded-full"></span>
+              <span class="wave-bar w-1.5 h-4 bg-ambercamp-600 rounded-full"></span>
+              <span class="wave-bar w-1.5 h-2.5 bg-ambercamp-600 rounded-full"></span>
+            </div>
+
+            <a href="${ytUrl}" target="_blank" rel="noopener noreferrer"
+              class="btn-secondary sm:ml-auto px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1.5 transition">
+              <span>🎬</span> 在 YouTube 聽真實野外錄音
+            </a>
+          </div>
+
+          <div class="text-sm text-forest-900 space-y-1">
+            <p><strong>叫聲描述：</strong>${owl.callText}</p>
+            <p class="text-amber-800 font-bold">💡 親子記憶口訣：${owl.callMnemonic}</p>
+          </div>
+          <p class="text-[11px] text-red-700 font-medium">
+            ⚠️ 生態提醒：出發前可在家或車上先聽熟，到了野外露營區切勿對著森林播放鳥音誘鳥喔！
+          </p>
+        </div>
+
+        <!-- 四大核心欄位詳細資訊 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm">
+          <div class="paper-subcard rounded-2xl bg-parchment-50 border border-parchment-300 p-4 space-y-2">
+            <h4 class="font-black text-forest-900 flex items-center gap-1.5"><span>🗺️</span> 棲息地區</h4>
+            <p class="text-stone-700 leading-relaxed">${owl.region}</p>
+            <div class="pt-1">${renderElevationBar(owl.elevMin, owl.elevMax)}</div>
+          </div>
+
+          <div class="paper-subcard rounded-2xl bg-parchment-50 border border-parchment-300 p-4 space-y-2">
+            <h4 class="font-black text-forest-900 flex items-center gap-1.5"><span>🦉</span> 長相特徵</h4>
+            <p class="text-stone-700 leading-relaxed">${owl.appearance}</p>
+          </div>
+
+          <div class="paper-subcard sm:col-span-2 rounded-2xl bg-parchment-50 border border-parchment-300 p-4 space-y-2">
+            <h4 class="font-black text-forest-900 flex items-center gap-1.5"><span>🌲</span> 棲地特徵與露營觀察技巧</h4>
+            <p class="text-stone-700 leading-relaxed">${owl.habitat}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    /**
+     * 8. 聽音辨位挑戰（答題後揭曉真實貓頭鷹照片與口訣）
+     */
+    function startQuizRound() {
+      audioEngine.stop();
+      const target = OWLS[Math.floor(Math.random() * OWLS.length)];
+      const others = OWLS.filter(o => o.id !== target.id)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
+      const options = [target, ...others].sort(() => Math.random() - 0.5);
+
+      appState.quiz.currentOwl = target;
+      appState.quiz.options = options;
+      appState.quiz.answered = false;
+
+      document.getElementById('quiz-hint-text').classList.add('hidden');
+      document.getElementById('quiz-feedback').classList.add('hidden');
+      updateQuizScoreUI();
+      renderQuizOptions();
+      updateQuizPlayBtnUI(false);
+    }
+
+    function updateQuizScoreUI() {
+      document.getElementById('quiz-streak').textContent = `${appState.quiz.streak} 🔥`;
+      document.getElementById('quiz-best').textContent = `${appState.quiz.bestStreak} 🏆`;
+    }
+
+    function updateQuizPlayBtnUI(isPlaying) {
+      const icon = document.getElementById('quiz-play-icon');
+      const text = document.getElementById('quiz-play-text');
+      const wave = document.getElementById('quiz-wave');
+      if (isPlaying) {
+        icon.textContent = '⏹️';
+        text.textContent = '停止播放';
+        wave.classList.add('playing');
+      } else {
+        icon.textContent = '▶️';
+        text.textContent = '播放叫聲';
+        wave.classList.remove('playing');
+      }
+    }
+
+    function renderQuizOptions() {
+      const container = document.getElementById('quiz-options');
+      container.innerHTML = appState.quiz.options.map(owl => `
+        <button type="button" onclick="submitQuizAnswer('${owl.id}')"
+          id="quiz-opt-${owl.id}"
+          class="paper-subcard flex items-center gap-3 p-3.5 rounded-2xl bg-parchment-50 hover:bg-parchment-200 border-2 border-parchment-300 text-left transition cursor-pointer">
+          <div class="w-12 h-12 rounded-xl bg-forest-900/90 text-ambercamp-400 flex items-center justify-center text-xl shrink-0 badge-accent">
+            🦉
+          </div>
+          <div>
+            <div class="font-black text-forest-950 text-base">${owl.name}</div>
+            <div class="text-xs text-stone-500">${owl.elevText}</div>
+            <div class="text-[11px] text-stone-600 mt-0.5">${owl.hasEars ? '有耳羽簇' : '圓頭無耳'} · ${owl.activityLabel}</div>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    function updateQuizRevealPhoto() {
+      const target = appState.quiz.currentOwl;
+      if (!target) return;
+      document.getElementById('quiz-reveal-photo').innerHTML = renderOwlMediaHTML(target, {
+        isBackView: false,
+        clickableZoom: true,
+        compact: true
+      });
+    }
+
+    function submitQuizAnswer(selectedId) {
+      if (appState.quiz.answered) return;
+      appState.quiz.answered = true;
+      audioEngine.stop();
+
+      const target = appState.quiz.currentOwl;
+      const isCorrect = selectedId === target.id;
+
+      if (isCorrect) {
+        appState.quiz.streak += 1;
+        if (appState.quiz.streak > appState.quiz.bestStreak) {
+          appState.quiz.bestStreak = appState.quiz.streak;
+          saveData(true);
+        }
+      } else {
+        appState.quiz.streak = 0;
+      }
+      updateQuizScoreUI();
+
+      appState.quiz.options.forEach(owl => {
+        const btn = document.getElementById(`quiz-opt-${owl.id}`);
+        btn.disabled = true;
+        btn.classList.remove('cursor-pointer', 'hover:bg-parchment-200');
+        if (owl.id === target.id) {
+          btn.classList.add('border-emerald-600', 'bg-emerald-50');
+        } else if (owl.id === selectedId && !isCorrect) {
+          btn.classList.add('border-red-500', 'bg-red-50', 'opacity-80');
+        } else {
+          btn.classList.add('opacity-50');
+        }
+      });
+
+      const fb = document.getElementById('quiz-feedback');
+      const title = document.getElementById('quiz-feedback-title');
+      const desc = document.getElementById('quiz-feedback-desc');
+
+      fb.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-400', 'bg-amber-50', 'border-amber-400');
+      if (isCorrect) {
+        fb.classList.add('bg-emerald-50', 'border-emerald-400');
+        title.textContent = `🎉 答對了！就是「${target.name}」！`;
+        title.className = 'text-lg sm:text-xl font-black text-emerald-800';
+      } else {
+        fb.classList.add('bg-amber-50', 'border-amber-400');
+        title.textContent = `🦉 差一點點！正確答案是「${target.name}」`;
+        title.className = 'text-lg sm:text-xl font-black text-amber-900';
+      }
+      desc.innerHTML = `<strong>叫聲口訣：</strong>${target.callMnemonic}。<br/>${target.callText}`;
+      updateQuizRevealPhoto();
+    }
+
+    /**
+     * 9. 露營尋鴞紀錄簿渲染與更新
+     */
+    function updateLogBadges() {
+      let heardCount = 0;
+      let seenCount = 0;
+      let unlockedCount = 0;
+
+      OWLS.forEach(o => {
+        const l = appState.logs[o.id];
+        if (l.heard) heardCount++;
+        if (l.seen) seenCount++;
+        if (l.heard || l.seen) unlockedCount++;
+      });
+
+      const pct = Math.round((unlockedCount / OWLS.length) * 100);
+      document.getElementById('log-count-badge').textContent = `${unlockedCount}/${OWLS.length}`;
+      document.getElementById('stat-heard').textContent = `${heardCount} / ${OWLS.length}`;
+      document.getElementById('stat-seen').textContent = `${seenCount} / ${OWLS.length}`;
+      document.getElementById('stat-percent').textContent = `${pct}%`;
+      document.getElementById('stat-progress-bar').style.width = `${pct}%`;
+    }
+
+    function renderLogList() {
+      const container = document.getElementById('log-list');
+      container.innerHTML = OWLS.map(owl => {
+        const log = appState.logs[owl.id];
+        const unlocked = log.heard || log.seen;
+        return `
+          <div class="paper-card rounded-2xl bg-parchment-100 text-forest-950 border-2 ${unlocked ? 'border-ambercamp-500' : 'border-parchment-300'} p-4 shadow-md space-y-3">
+            <div class="flex items-center gap-3.5">
+              <div class="w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-forest-900 ${unlocked ? '' : 'opacity-65 grayscale-[55%]'}">
+                ${renderOwlMediaHTML(owl, { isBackView: false, clickableZoom: false, compact: true })}
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="font-black text-lg text-forest-950 truncate">${owl.name}</h3>
+                  <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${unlocked ? 'bg-amber-200 text-amber-900 badge-accent' : 'bg-parchment-200 text-stone-500'}">
+                    ${unlocked ? '✨ 已解鎖' : '未發現'}
+                  </span>
+                </div>
+                <p class="text-xs text-stone-500">${owl.elevText}</p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <button type="button" onclick="quickToggleLog('${owl.id}', 'heard')"
+                    class="filter-pill px-3 py-1 rounded-lg text-xs font-bold border transition cursor-pointer ${log.heard ? 'active-pill bg-emerald-700 text-white border-emerald-800' : 'bg-parchment-50 text-stone-600 border-parchment-300'}">
+                    👂 ${log.heard ? '聽過聲音 ✓' : '聽過聲音'}
+                  </button>
+                  <button type="button" onclick="quickToggleLog('${owl.id}', 'seen')"
+                    class="filter-pill px-3 py-1 rounded-lg text-xs font-bold border transition cursor-pointer ${log.seen ? 'active-pill bg-ambercamp-500 text-forest-950 border-ambercamp-600' : 'bg-parchment-50 text-stone-600 border-parchment-300'}">
+                    👀 ${log.seen ? '親眼看到 ✓' : '親眼看到'}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 日期與營區備註 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 border-t border-parchment-300">
+              <input type="date" value="${log.date || ''}" aria-label="${owl.name}觀察日期"
+                onchange="updateLogField('${owl.id}', 'date', this.value)"
+                class="px-2.5 py-2 rounded-xl bg-parchment-50 border border-parchment-300 text-xs text-forest-950 focus:outline-none focus:border-ambercamp-500"/>
+              <input type="text" value="${(log.note || '').replace(/"/g, '&quot;')}" placeholder="記錄露營區名稱、天氣或趣事..."
+                aria-label="${owl.name}露營區備註"
+                onchange="updateLogField('${owl.id}', 'note', this.value)"
+                class="sm:col-span-2 px-3 py-2 rounded-xl bg-parchment-50 border border-parchment-300 text-xs text-forest-950 placeholder:text-stone-400 focus:outline-none focus:border-ambercamp-500"/>
+            </div>
+          </div>
+        `;
+      }).join('');
+      updateLogBadges();
+    }
+
+    /**
+     * 10. 全域互動事件處理函式
+     */
+    window.handleCardPlay = function (owlId) {
+      audioEngine.toggle(owlId, `card-${owlId}`);
+    };
+
+    window.handleModalPlay = function (owlId) {
+      audioEngine.toggle(owlId, `modal-${owlId}`);
+    };
+
+    window.toggleOwletFlip = function (e) {
+      if (e) e.stopPropagation();
+      appState.owletBackView = !appState.owletBackView;
+      renderOwlGrid();
+      if (currentDetailId === 'collared_owlet') {
+        renderDetailModal();
+      }
+    };
+
+    window.quickToggleLog = function (owlId, field) {
+      appState.logs[owlId][field] = !appState.logs[owlId][field];
+      if (appState.logs[owlId][field] && !appState.logs[owlId].date) {
+        const today = new Date().toISOString().split('T')[0];
+        appState.logs[owlId].date = today;
+      }
+      saveData();
+      renderOwlGrid();
+      if (currentDetailId === owlId) renderDetailModal();
+      if (appState.activeTab === 'log') renderLogList();
+    };
+
+    window.updateLogField = function (owlId, field, value) {
+      appState.logs[owlId][field] = value;
+      saveData();
+    };
+
+    window.openDetailModal = openDetailModal;
+    window.submitQuizAnswer = submitQuizAnswer;
+
+    audioEngine.onStateChange = (activeKey) => {
+      renderOwlGrid();
+      if (currentDetailId) renderDetailModal();
+      updateQuizPlayBtnUI(activeKey === 'quiz-sound');
+    };
+
+    /**
+     * 11. 夜間紅光模式切換
+     */
+    function applyRedLightMode() {
+      const btn = document.getElementById('btn-redlight');
+      const label = document.getElementById('redlight-label');
+      if (appState.redLight) {
+        document.body.classList.add('red-light-mode');
+        btn.setAttribute('aria-pressed', 'true');
+        label.textContent = '紅光開啟中';
+      } else {
+        document.body.classList.remove('red-light-mode');
+        btn.setAttribute('aria-pressed', 'false');
+        label.textContent = '夜間紅光';
+      }
+    }
+
+    /**
+     * 12. 分頁、篩選與啟動初始化
+     */
+    function switchTab(tabName) {
+      appState.activeTab = tabName;
+      audioEngine.stop();
+
+      ['guide', 'quiz', 'log'].forEach(t => {
+        const view = document.getElementById(`view-${t}`);
+        const btn = document.getElementById(`tab-${t}`);
+        if (t === tabName) {
+          view.classList.remove('hidden');
+          btn.setAttribute('aria-selected', 'true');
+          btn.classList.add('active-pill', 'bg-ambercamp-500', 'text-forest-950', 'shadow');
+          btn.classList.remove('text-parchment-200', 'hover:bg-forest-800');
+        } else {
+          view.classList.add('hidden');
+          btn.setAttribute('aria-selected', 'false');
+          btn.classList.remove('active-pill', 'bg-ambercamp-500', 'text-forest-950', 'shadow');
+          btn.classList.add('text-parchment-200', 'hover:bg-forest-800');
+        }
+      });
+
+      if (tabName === 'quiz' && !appState.quiz.currentOwl) {
+        startQuizRound();
+      } else if (tabName === 'log') {
+        renderLogList();
+      } else if (tabName === 'guide') {
+        renderOwlGrid();
+      }
+    }
+
+    function bindFilterGroup(containerId, filterKey) {
+      const container = document.getElementById(containerId);
+      container.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-val]');
+        if (!btn) return;
+        appState.filters[filterKey] = btn.dataset.val;
+        container.querySelectorAll('button').forEach(b => {
+          b.classList.remove('active-pill', 'bg-ambercamp-500', 'text-forest-950');
+          b.classList.add('bg-forest-900', 'text-parchment-200', 'border', 'border-forest-700');
+        });
+        btn.classList.add('active-pill', 'bg-ambercamp-500', 'text-forest-950');
+        btn.classList.remove('bg-forest-900', 'text-parchment-200', 'border', 'border-forest-700');
+        renderOwlGrid();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSavedData();
+      applyRedLightMode();
+      updateLogBadges();
+      renderOwlGrid();
+
+      // 非同步啟動三層真實照片載入
+      loadAllOwlPhotos();
+
+      // 分頁點擊
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+      });
+
+      // 篩選器綁定
+      bindFilterGroup('filter-elev', 'elev');
+      bindFilterGroup('filter-ears', 'ears');
+      bindFilterGroup('filter-activity', 'activity');
+
+      document.getElementById('btn-reset-filters').addEventListener('click', () => {
+        appState.filters = { elev: 'all', ears: 'all', activity: 'all' };
+        ['filter-elev', 'filter-ears', 'filter-activity'].forEach(id => {
+          const btns = document.getElementById(id).querySelectorAll('button');
+          btns.forEach((b, idx) => {
+            if (idx === 0) {
+              b.classList.add('active-pill', 'bg-ambercamp-500', 'text-forest-950');
+              b.classList.remove('bg-forest-900', 'text-parchment-200', 'border', 'border-forest-700');
+            } else {
+              b.classList.remove('active-pill', 'bg-ambercamp-500', 'text-forest-950');
+              b.classList.add('bg-forest-900', 'text-parchment-200', 'border', 'border-forest-700');
+            }
+          });
+        });
+        renderOwlGrid();
+      });
+
+      // 夜間紅光切換
+      document.getElementById('btn-redlight').addEventListener('click', () => {
+        appState.redLight = !appState.redLight;
+        applyRedLightMode();
+        saveData(true);
+        showToast(appState.redLight ? '🔴 已開啟夜間紅光模式，保護暗視力' : '🌙 已恢復一般森林模式');
+      });
+
+      // 詳情視窗關閉
+      document.getElementById('btn-close-detail').addEventListener('click', closeDetailModal);
+      document.getElementById('detail-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'detail-modal') closeDetailModal();
+      });
+
+      // 大圖 Lightbox 關閉
+      document.getElementById('btn-close-lightbox').addEventListener('click', closeLightbox);
+      document.getElementById('lightbox-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'lightbox-modal') closeLightbox();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (!document.getElementById('lightbox-modal').classList.contains('hidden')) {
+            closeLightbox();
+          } else if (!document.getElementById('detail-modal').classList.contains('hidden')) {
+            closeDetailModal();
+          } else if (!document.getElementById('ethics-modal').classList.contains('hidden')) {
+            document.getElementById('ethics-modal').classList.add('hidden');
+          }
+        }
+      });
+
+      // 賞鴞守則視窗
+      const ethicsModal = document.getElementById('ethics-modal');
+      document.getElementById('btn-ethics').addEventListener('click', () => ethicsModal.classList.remove('hidden'));
+      document.getElementById('btn-close-ethics').addEventListener('click', () => ethicsModal.classList.add('hidden'));
+      document.getElementById('btn-ok-ethics').addEventListener('click', () => ethicsModal.classList.add('hidden'));
+      ethicsModal.addEventListener('click', (e) => {
+        if (e.target.id === 'ethics-modal') ethicsModal.classList.add('hidden');
+      });
+
+      // 聽音辨位測驗按鈕
+      document.getElementById('btn-quiz-play').addEventListener('click', () => {
+        if (!appState.quiz.currentOwl) startQuizRound();
+        audioEngine.toggle(appState.quiz.currentOwl.id, 'quiz-sound');
+      });
+
+      document.getElementById('btn-quiz-hint').addEventListener('click', () => {
+        const hintEl = document.getElementById('quiz-hint-text');
+        if (appState.quiz.currentOwl) {
+          hintEl.textContent = `💡 小提示：${appState.quiz.currentOwl.callHint}`;
+          hintEl.classList.remove('hidden');
+        }
+      });
+
+      document.getElementById('btn-quiz-next').addEventListener('click', startQuizRound);
+    });
+  </script>
+</body>
+</html>

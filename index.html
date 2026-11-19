@@ -11,10 +11,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="台灣尋鴞" />
   <meta name="application-name" content="台灣尋鴞" />
-  <meta name="theme-color" content="#0c1812" id="themeColorMeta" />
+  <meta name="theme-color" content="#13251e" id="themeColorMeta" />
 
   <!-- 預設 SVG Favicon 備援 -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c1812'/%3E%3Ccircle cx='50' cy='14' r='6' fill='%23e8a849'/%3E%3Ccircle cx='53' cy='12' r='5' fill='%230c1812'/%3E%3Cpath d='M18 16l8 9h12l8-9v20c0 9-6 16-14 16s-14-7-14-16V16z' fill='%236f523b'/%3E%3Ccircle cx='25' cy='31' r='6' fill='%23f59e0b'/%3E%3Ccircle cx='39' cy='31' r='6' fill='%23f59e0b'/%3E%3Ccircle cx='25' cy='31' r='3' fill='%23111'/%3E%3Ccircle cx='39' cy='31' r='3' fill='%23111'/%3E%3Cpath d='M32 35l-3 5h6z' fill='%23f4c97a'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2313251e'/%3E%3Ccircle cx='50' cy='14' r='6' fill='%23f5a623'/%3E%3Ccircle cx='53' cy='12' r='5' fill='%2313251e'/%3E%3Cpath d='M18 16l8 9h12l8-9v20c0 9-6 16-14 16s-14-7-14-16V16z' fill='%236f523b'/%3E%3Ccircle cx='25' cy='31' r='6' fill='%23f59e0b'/%3E%3Ccircle cx='39' cy='31' r='6' fill='%23f59e0b'/%3E%3Ccircle cx='25' cy='31' r='3' fill='%23111'/%3E%3Ccircle cx='39' cy='31' r='3' fill='%23111'/%3E%3Cpath d='M32 35l-3 5h6z' fill='%23f5a623'/%3E%3C/svg%3E" />
 
   <!-- 動態注入 512x512 / 180x180 PNG App 圖示與 Web App Manifest 掛載點 -->
   <link id="appleTouchIcon180" rel="apple-touch-icon" sizes="180x180" href="" />
@@ -38,23 +38,23 @@
           },
           colors: {
             forest: {
-              950: '#08110c',
-              900: '#0c1812',
-              800: '#13241b',
-              700: '#1d3629',
-              600: '#2b4f3d',
+              950: '#0b1712',
+              900: '#13251e',
+              800: '#193228',
+              700: '#234436',
+              600: '#2f5947',
             },
             ambercamp: {
-              300: '#f4c97a',
-              400: '#efc067',
-              500: '#e8a849',
-              600: '#c98827',
+              300: '#f9ca74',
+              400: '#f7b84b',
+              500: '#f5a623',
+              600: '#d48811',
             },
             parchment: {
-              50: '#fdfbf7',
-              100: '#f8f3e8',
-              200: '#efe6d4',
-              300: '#dfd1b6',
+              50: '#fdfcf8',
+              100: '#f8f5ec',
+              200: '#efe9d8',
+              300: '#dfd5bd',
             }
           }
         }
@@ -63,10 +63,10 @@
   </script>
 
   <style>
-    /* 深森綠與暖營火琥珀色露營手冊基底 */
+    /* 深森綠 (#13251e) 與暖營火琥珀色 (#f5a623) 露營手冊基底 */
     html, body {
-      background-color: #0c1812;
-      color: #f8f3e8;
+      background-color: #13251e;
+      color: #f8f5ec;
       transition: background-color 0.35s ease, color 0.35s ease;
       -webkit-tap-highlight-color: transparent;
       overscroll-behavior-y: none;
@@ -74,9 +74,9 @@
 
     .forest-bg {
       background-image:
-        radial-gradient(circle at 12% 14%, rgba(232, 168, 73, 0.1) 0%, transparent 45%),
-        radial-gradient(circle at 86% 22%, rgba(43, 79, 61, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 50% 92%, rgba(232, 168, 73, 0.05) 0%, transparent 45%);
+        radial-gradient(circle at 12% 14%, rgba(245, 166, 35, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 86% 22%, rgba(47, 89, 71, 0.28) 0%, transparent 50%),
+        radial-gradient(circle at 50% 92%, rgba(245, 166, 35, 0.06) 0%, transparent 45%);
     }
 
     /* iOS 動態島、瀏海與底部安全區域適配 */
@@ -106,7 +106,7 @@
       100% { background-position: 200% 0; }
     }
     .photo-shimmer {
-      background: linear-gradient(90deg, #13241b 25%, #203d2e 50%, #13241b 75%);
+      background: linear-gradient(90deg, #193228 25%, #25483a 50%, #193228 75%);
       background-size: 200% 100%;
       animation: shimmer 1.6s infinite linear;
     }
@@ -142,6 +142,69 @@
       animation: expandFade 0.25s ease-out;
     }
 
+    /* =========================================================
+       盲聽模式：物理裁切防爆雷舞台（Peephole Clip）
+       完全不依賴疊加遮罩，在 iOS Safari 硬體合成下也絕不洩漏標題、頻道與縮圖
+       ========================================================= */
+    .mystery-stage-box {
+      background-color: #0d1914;
+      border: 1px solid rgba(47, 89, 71, 0.75);
+    }
+
+    .quiz-yt-stage {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      clip-path: none;
+      -webkit-clip-path: none;
+      overflow: hidden;
+      border-radius: 14px;
+      position: relative;
+      margin: 0 auto;
+      background: #08110d;
+      border: 1px solid rgba(47, 89, 71, 0.75);
+      transition: width 0.35s ease, height 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .quiz-yt-stage iframe {
+      width: 100%;
+      height: 100%;
+      position: static;
+      top: auto;
+      left: auto;
+      transform: none;
+      border: 0;
+      display: block;
+      filter: none;
+      transition: filter 0.35s ease;
+    }
+
+    .quiz-yt-stage.is-blind {
+      width: 76px;
+      height: 54px;
+      aspect-ratio: auto;
+      overflow: hidden;
+      border-radius: 14px;
+      clip-path: inset(0 round 14px);
+      -webkit-clip-path: inset(0 round 14px);
+      position: relative;
+      margin: 16px auto;
+      border: 2px solid rgba(245, 166, 35, 0.75);
+      box-shadow: 0 0 24px rgba(245, 166, 35, 0.25);
+      background: #08110d;
+    }
+
+    .quiz-yt-stage.is-blind iframe {
+      width: 340px;
+      height: 200px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 0;
+      filter: brightness(0.35) contrast(1.2);
+    }
+
     /* 卡片懸浮微動效 */
     .owl-card {
       transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
@@ -167,7 +230,8 @@
     }
     body.night-mode header,
     body.night-mode footer,
-    body.night-mode .night-surface {
+    body.night-mode .night-surface,
+    body.night-mode .mystery-stage-box {
       background-color: #120202 !important;
       border-color: #4a0c0c !important;
     }
@@ -233,17 +297,25 @@
       border-color: #571010 !important;
       color: #e05252 !important;
     }
-    body.night-mode .blind-curtain {
-      background-color: #160303 !important;
+    body.night-mode .quiz-yt-stage {
       border-color: #541010 !important;
+      background-color: #120202 !important;
     }
-    /* 指定低亮度紅光濾鏡：照片、Lightbox、SVG 與 YouTube 播放器 */
+    body.night-mode .quiz-yt-stage.is-blind {
+      border-color: rgba(217, 72, 72, 0.75) !important;
+      box-shadow: 0 0 24px rgba(180, 30, 30, 0.35) !important;
+      background-color: #140202 !important;
+    }
+    /* 低亮度紅光濾鏡：照片、Lightbox、SVG 與 YouTube 播放器 */
     body.night-mode .owl-real-photo,
     body.night-mode .lightbox-photo,
     body.night-mode .yt-embed-frame,
     body.night-mode .app-icon-preview,
     body.night-mode .owl-svg-wrap svg {
       filter: sepia(100%) hue-rotate(-50deg) saturate(260%) brightness(0.45) !important;
+    }
+    body.night-mode .quiz-yt-stage.is-blind iframe {
+      filter: sepia(100%) hue-rotate(-50deg) saturate(260%) brightness(0.28) contrast(1.2) !important;
     }
     body.night-mode .photo-shimmer {
       background: linear-gradient(90deg, #1b0303 25%, #2f0606 50%, #1b0303 75%) !important;
@@ -258,7 +330,7 @@
       background: rgba(0, 0, 0, 0.18);
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(232, 168, 73, 0.35);
+      background: rgba(245, 166, 35, 0.35);
       border-radius: 999px;
     }
     body.night-mode ::-webkit-scrollbar-thumb {
@@ -422,7 +494,7 @@
           <div>
             <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 badge-accent mb-1">親子互動遊戲</span>
             <h2 class="text-xl sm:text-2xl font-black text-forest-950">🎧 聽音辨位挑戰</h2>
-            <p class="text-xs sm:text-sm text-stone-600">聽聽看黑暗的森林裡是哪隻貓頭鷹在叫？答題後立即揭曉真實樣貌！</p>
+            <p class="text-xs sm:text-sm text-stone-600">聽聽看黑暗的森林裡是哪隻貓頭鷹在叫？答題後立即展開完整影片與真實樣貌！</p>
           </div>
           <div class="flex items-center gap-2">
             <div class="paper-subcard px-3 py-2 rounded-2xl bg-parchment-200/80 border border-parchment-300 text-center">
@@ -452,58 +524,40 @@
           </button>
         </div>
 
-        <!-- 音源區 A：真實 YouTube 盲聽播放器（含防爆雷遮罩） -->
-        <div id="quiz-youtube-zone" class="paper-subcard rounded-2xl bg-forest-900 text-parchment-50 p-4 sm:p-5 space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
-            <span class="font-bold text-ambercamp-300 flex items-center gap-1.5">
-              <span>🙈</span> 盲聽模式：已自動遮蔽影片標題防爆雷
+        <!-- 音源區 A：真實 YouTube 物理裁切防爆雷盲聽舞台（#0d1914） -->
+        <div id="quiz-youtube-zone" class="mystery-stage-box rounded-2xl text-parchment-50 p-5 sm:p-6 text-center space-y-3">
+          <!-- 狀態標籤與提示按鈕（嚴格位於裁切視窗上方） -->
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span id="quiz-stage-badge" class="badge-accent inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ambercamp-500/15 border border-ambercamp-500/40 text-ambercamp-300 text-xs font-black">
+              🔒 物理裁切防爆雷模式
             </span>
             <button id="btn-quiz-hint-yt" type="button"
-              class="btn-secondary px-3 py-1 rounded-lg bg-forest-800 hover:bg-forest-700 border border-forest-600 text-xs text-parchment-200 transition cursor-pointer">
+              class="btn-secondary px-3 py-1.5 rounded-xl bg-forest-800 hover:bg-forest-700 border border-forest-600 text-xs font-bold text-parchment-200 transition cursor-pointer">
               💡 叫聲小提示
             </button>
           </div>
 
-          <!-- 16:9 盲聽影片與四邊防爆雷遮罩容器 -->
-          <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-forest-700 shadow-inner">
-            <!-- YouTube iframe 掛載容器 -->
-            <div id="quiz-yt-container" class="w-full h-full"></div>
+          <!-- 盲聽說明文字（上方） -->
+          <p id="quiz-blind-top-text" class="text-sm sm:text-base font-black text-parchment-50 pt-1">
+            點擊下方中央播放鍵聆聽真實野外叫聲
+          </p>
 
-            <!-- 防爆雷盲聽遮罩：精準遮住上方標題列、下方資訊列與左右畫面，僅保留正中央可點擊播放鍵 -->
-            <div id="quiz-blind-mask" class="absolute inset-0 z-10 pointer-events-none flex flex-col">
-              <!-- 上方不透明遮罩（完全遮蔽 YouTube 標題與頻道列） -->
-              <div class="blind-curtain pointer-events-auto h-[30%] bg-forest-900/98 border-b border-ambercamp-500/35 flex flex-col items-center justify-center px-3 text-center">
-                <span class="text-xs sm:text-sm font-black text-ambercamp-300">🎧 點擊正中央播放按鈕聆聽真實鳥音</span>
-                <span class="text-[11px] text-parchment-200/75 hidden sm:inline">猜猜看是哪一種台灣貓頭鷹？（上方標題已遮蔽）</span>
-              </div>
-
-              <!-- 中間列：左右遮蔽縮圖，正中央留出透明點擊區讓使用者直接按 YouTube 播放鍵 -->
-              <div class="flex-1 flex">
-                <div class="blind-curtain pointer-events-auto w-[28%] sm:w-[33%] bg-forest-900/98 border-r border-ambercamp-500/25 flex items-center justify-center">
-                  <span class="text-2xl sm:text-3xl opacity-40">🌲</span>
-                </div>
-                <div class="flex-1 pointer-events-none border-2 border-dashed border-ambercamp-400/75 rounded-lg m-0.5 flex items-end justify-center pb-1">
-                  <span class="px-2 py-0.5 rounded-full bg-black/75 text-[10px] font-bold text-ambercamp-300">點擊中央播放</span>
-                </div>
-                <div class="blind-curtain pointer-events-auto w-[28%] sm:w-[33%] bg-forest-900/98 border-l border-ambercamp-500/25 flex items-center justify-center">
-                  <span class="text-2xl sm:text-3xl opacity-40">🦉</span>
-                </div>
-              </div>
-
-              <!-- 下方不透明遮罩（遮蔽底部 YouTube 資訊與進度列） -->
-              <div class="blind-curtain pointer-events-auto h-[24%] bg-forest-900/98 border-t border-ambercamp-500/35 flex items-center justify-center px-3 text-center">
-                <span class="text-[11px] sm:text-xs text-parchment-200/80">
-                  從下方四個選項選出答案後，將立刻揭曉影片與真實生態照！
-                </span>
-              </div>
-            </div>
+          <!-- 物理裁切窺孔容器：答題前為 76x54 裁切視窗，答題後移除 .is-blind 平滑展開 16:9 -->
+          <div id="quiz-yt-stage" class="quiz-yt-stage is-blind">
+            <!-- JS 掛載 YouTube iframe -->
           </div>
 
-          <p id="quiz-hint-text-yt" class="hidden text-xs sm:text-sm text-ambercamp-300 bg-forest-950/70 px-4 py-2 rounded-xl border border-ambercamp-500/30"></p>
+          <!-- 盲聽說明文字（下方） -->
+          <p id="quiz-blind-bottom-text" class="text-xs sm:text-sm text-parchment-200/80 leading-relaxed">
+            從下方四個選項選出答案後，將立刻展開完整影片與真實生態照！
+          </p>
+
+          <!-- 預設收合的叫聲小提示 -->
+          <p id="quiz-hint-text-yt" class="hidden text-xs sm:text-sm text-ambercamp-300 bg-forest-950/80 px-4 py-2.5 rounded-xl border border-ambercamp-500/35 text-left"></p>
         </div>
 
         <!-- 音源區 B：離線模擬音播放器 -->
-        <div id="quiz-synth-zone" class="hidden paper-subcard rounded-2xl bg-forest-900 text-parchment-50 p-6 flex flex-col items-center text-center space-y-4">
+        <div id="quiz-synth-zone" class="hidden mystery-stage-box rounded-2xl text-parchment-50 p-6 flex flex-col items-center text-center space-y-4">
           <div class="text-xs font-bold tracking-widest uppercase text-ambercamp-300">Offline Synthesized Owl Call</div>
 
           <button id="btn-quiz-play-synth" type="button"
@@ -521,10 +575,10 @@
           </div>
 
           <button id="btn-quiz-hint-synth" type="button"
-            class="btn-secondary px-3.5 py-1.5 rounded-xl bg-forest-800 hover:bg-forest-700 border border-forest-600 text-xs text-parchment-200 transition cursor-pointer">
-            💡 需要小提示
+            class="btn-secondary px-3.5 py-1.5 rounded-xl bg-forest-800 hover:bg-forest-700 border border-forest-600 text-xs font-bold text-parchment-200 transition cursor-pointer">
+            💡 叫聲小提示
           </button>
-          <p id="quiz-hint-text-synth" class="hidden text-xs sm:text-sm text-ambercamp-300 bg-forest-950/70 px-4 py-2 rounded-xl border border-ambercamp-500/30"></p>
+          <p id="quiz-hint-text-synth" class="hidden text-xs sm:text-sm text-ambercamp-300 bg-forest-950/80 px-4 py-2.5 rounded-xl border border-ambercamp-500/35"></p>
         </div>
 
         <!-- 四選一選項區 -->
@@ -707,7 +761,7 @@
       'use strict';
 
       /* =========================================================
-         0. 安全 DOM 與字串工具
+         0. 安全 DOM 與 YouTube 嵌入網址工具
          ========================================================= */
       function byId(id) {
         return document.getElementById(id);
@@ -727,8 +781,10 @@
           .replace(/'/g, '&#39;');
       }
 
-      function buildYouTubeEmbedUrl(videoId) {
-        return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0&modestbranding=1&playsinline=1`;
+      // 採用標準 www.youtube.com/embed/ 搭配 strict-origin-when-cross-origin 以達最高 GitHub Pages & iOS Safari 相容性
+      function buildYouTubeEmbedUrl(videoId, isBlindQuiz) {
+        const fsVal = isBlindQuiz ? 0 : 1;
+        return `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?rel=0&modestbranding=1&playsinline=1&fs=${fsVal}`;
       }
 
       /* =========================================================
@@ -748,9 +804,9 @@
 
         // 深森綠夜空漸層
         const bgGrad = ctx.createRadialGradient(256, 210, 40, 256, 256, 360);
-        bgGrad.addColorStop(0, '#1c3b2c');
-        bgGrad.addColorStop(0.55, '#13241b');
-        bgGrad.addColorStop(1, '#08110c');
+        bgGrad.addColorStop(0, '#1f4033');
+        bgGrad.addColorStop(0.55, '#13251e');
+        bgGrad.addColorStop(1, '#091410');
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, 512, 512);
 
@@ -763,14 +819,14 @@
         stars.forEach(([x, y, r, alpha]) => {
           ctx.beginPath();
           ctx.arc(x, y, r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(244, 201, 122, ${alpha})`;
+          ctx.fillStyle = `rgba(249, 202, 116, ${alpha})`;
           ctx.fill();
         });
 
         // 暖金弦月
         const moonGlow = ctx.createRadialGradient(410, 96, 10, 410, 96, 75);
-        moonGlow.addColorStop(0, 'rgba(232, 168, 73, 0.34)');
-        moonGlow.addColorStop(1, 'rgba(232, 168, 73, 0)');
+        moonGlow.addColorStop(0, 'rgba(245, 166, 35, 0.35)');
+        moonGlow.addColorStop(1, 'rgba(245, 166, 35, 0)');
         ctx.fillStyle = moonGlow;
         ctx.beginPath();
         ctx.arc(410, 96, 75, 0, Math.PI * 2);
@@ -778,11 +834,11 @@
 
         ctx.beginPath();
         ctx.arc(410, 96, 36, 0, Math.PI * 2);
-        ctx.fillStyle = '#f4c97a';
+        ctx.fillStyle = '#f9ca74';
         ctx.fill();
         ctx.beginPath();
         ctx.arc(426, 86, 32, 0, Math.PI * 2);
-        ctx.fillStyle = '#102118';
+        ctx.fillStyle = '#13251e';
         ctx.fill();
 
         // 樹枝
@@ -887,7 +943,7 @@
         ctx.lineTo(274, 256);
         ctx.lineTo(256, 294);
         ctx.closePath();
-        ctx.fillStyle = '#e8a849';
+        ctx.fillStyle = '#f5a623';
         ctx.fill();
         ctx.lineWidth = 4;
         ctx.strokeStyle = '#362417';
@@ -934,11 +990,11 @@
           const manifestObj = {
             name: '台灣尋鴞圖鑑',
             short_name: '台灣尋鴞',
-            description: '親子露營貓頭鷹觀察指南：真實台灣野外 YouTube 錄音、真實生態照與露營尋鴞紀錄簿',
+            description: '親子露營貓頭鷹觀察指南：真實台灣野外 YouTube 錄音、物理防爆雷盲聽測驗與露營尋鴞紀錄簿',
             display: 'standalone',
             orientation: 'portrait',
-            background_color: '#0c1812',
-            theme_color: '#0c1812',
+            background_color: '#13251e',
+            theme_color: '#13251e',
             start_url: startUrl,
             icons: [
               { src: icon180, sizes: '180x180', type: 'image/png', purpose: 'any' },
@@ -965,8 +1021,8 @@
           enName: 'Collared Scops Owl',
           wikiEn: 'Collared scops owl',
           wikiZh: '領角鴞',
-          ytPrimary: { id: 'o6nPSwQOWW0', label: '領角鴞的叫聲（15秒）' },
-          ytBackup: { id: 'HD5HW_seosM', label: '領角鴞後山實錄' },
+          ytPrimary: { id: 'o6nPSwQOWW0', label: '領角鴞的叫聲 15秒' },
+          ytBackup: { id: 'UEhCe3Y0tMg', label: '領角鴞野外實錄' },
           tags: ['low', 'ears'],
           isCommon: true,
           hasEars: true,
@@ -992,7 +1048,7 @@
           enName: 'Mountain Scops Owl',
           wikiEn: 'Mountain scops owl',
           wikiZh: '黃嘴角鴞',
-          ytPrimary: { id: 'wD559wt9zM0', label: '黃嘴角鴞的聲音（15秒）' },
+          ytPrimary: { id: 'wD559wt9zM0', label: '黃嘴角鴞的聲音 15秒' },
           ytBackup: { id: 'guxgb_vuTDI', label: '黃嘴角鴞野外紀錄' },
           tags: ['mid', 'ears'],
           isCommon: true,
@@ -1016,10 +1072,10 @@
           id: 'brown_hawk',
           name: '褐鷹鴞',
           sciName: 'Ninox japonica',
-          enName: 'Northern Boobook / Brown Hawk-Owl',
+          enName: 'Northern Boobook',
           wikiEn: 'Northern boobook',
           wikiZh: '褐鷹鴞',
-          ytPrimary: { id: 'n8aWlLYFYiU', label: '褐鷹鴞叫聲實錄（30秒）' },
+          ytPrimary: { id: 'n8aWlLYFYiU', label: '褐鷹鴞叫聲 30秒' },
           ytBackup: { id: 'cHnjrhYtvks', label: '褐鷹鴞野外紀錄' },
           tags: ['low', 'mid', 'stream'],
           isCommon: true,
@@ -1046,8 +1102,8 @@
           enName: 'Collared Owlet',
           wikiEn: 'Collared owlet',
           wikiZh: '鵂鶹',
-          ytPrimary: { id: 'PUiiQViLlrg', label: '鵂鶹表情及叫聲（2分02秒）' },
-          ytBackup: { id: 'ZcEFAtRmRfk', label: '鵂鶹鳴叫紀錄' },
+          ytPrimary: { id: 'LhE79rJUv5A', label: '鵂鶹鳴唱 16秒' },
+          ytBackup: { id: 'PUiiQViLlrg', label: '鵂鶹表情及叫聲' },
           tags: ['mid', 'diurnal'],
           isCommon: true,
           hasEars: false,
@@ -1073,7 +1129,7 @@
           enName: 'Tawny Fish Owl',
           wikiEn: 'Tawny fish owl',
           wikiZh: '黃魚鴞',
-          ytPrimary: { id: '5ZQeGu-OlF8', label: '台灣溪流黃魚鴞叫聲（1分56秒）' },
+          ytPrimary: { id: '5ZQeGu-OlF8', label: '黃魚鴞叫聲 1分56秒' },
           ytBackup: { id: 'YJB1xWkEFMU', label: '黃魚鴞叫聲紀錄' },
           tags: ['low', 'mid', 'stream', 'ears'],
           isCommon: false,
@@ -1100,7 +1156,7 @@
           enName: 'Brown Wood Owl',
           wikiEn: 'Brown wood owl',
           wikiZh: '褐林鴞',
-          ytPrimary: { id: '9rG3iHA10Tg', label: '褐林鴞呼呼呼呼叫聲（44秒）' },
+          ytPrimary: { id: '9rG3iHA10Tg', label: '褐林鴞呼呼叫聲 44秒' },
           ytBackup: { id: 'uTQYuVhHuac', label: '台灣褐林鴞叫聲' },
           tags: ['mid'],
           isCommon: false,
@@ -1125,7 +1181,7 @@
       /* =========================================================
          3. 真實生態照片三層備援載入（EN Wiki -> ZH Wiki -> Commons -> SVG）
          ========================================================= */
-      const PHOTO_CACHE_KEY = 'tw_owl_photo_cache_v4';
+      const PHOTO_CACHE_KEY = 'tw_owl_photo_cache_v5';
       const photoStore = {};
 
       OWLS.forEach(owl => {
@@ -1243,7 +1299,7 @@
         await Promise.allSettled(tasks);
       }
 
-      // 僅更新圖片槽，避免重繪整個卡片而中斷正在播放的嵌入式 YouTube 影片
+      // 局部更新照片槽，不影響正在播放的 YouTube 影片
       function refreshPhotoSlots() {
         OWLS.forEach(owl => {
           const cardMedia = byId(`card-media-${owl.id}`);
@@ -1290,15 +1346,15 @@
               <path d="M97 68 Q105 64 113 68" stroke="#f7eedd" stroke-width="2.2" stroke-linecap="round" fill="none"/>
               <path d="M127 68 Q135 64 143 68" stroke="#f7eedd" stroke-width="2.2" stroke-linecap="round" fill="none"/>
               <path d="M110 136 L113 152 L127 152 L130 136 Z" fill="#594433"/>
-              <rect x="44" y="10" width="152" height="22" rx="11" fill="#e8a849"/>
-              <text x="120" y="25" text-anchor="middle" font-size="11" font-weight="800" fill="#0c1812">後腦勺假眼圖解（背面）</text>
+              <rect x="44" y="10" width="152" height="22" rx="11" fill="#f5a623"/>
+              <text x="120" y="25" text-anchor="middle" font-size="11" font-weight="800" fill="#13251e">後腦勺假眼圖解（背面）</text>
             </svg>
           `;
         }
 
         const configs = {
           collared_scops: {
-            bg: '#13241b', moon: true, body: '#7c6f64', belly: '#c6b8a6', wing: '#5b5047',
+            bg: '#13251e', moon: true, body: '#7c6f64', belly: '#c6b8a6', wing: '#5b5047',
             ears: 'medium', earColor: '#5b5047', eyeColor: '#e85d22', beakColor: '#5c554c', collar: '#dfd2be'
           },
           mountain_scops: {
@@ -1334,7 +1390,7 @@
         }
 
         const skyDeco = c.moon
-          ? `<circle cx="198" cy="30" r="12" fill="#f4c97a" opacity="0.85"/><circle cx="203" cy="27" r="10" fill="${c.bg}"/>`
+          ? `<circle cx="198" cy="30" r="12" fill="#f9ca74" opacity="0.85"/><circle cx="203" cy="27" r="10" fill="${c.bg}"/>`
           : `<circle cx="198" cy="30" r="12" fill="#fde047" opacity="0.9"/><circle cx="198" cy="30" r="18" fill="#fde047" opacity="0.16"/>`;
 
         const faceDisc = c.darkDisc
@@ -1597,7 +1653,7 @@
       /* =========================================================
          6. 應用程式狀態管理與本機儲存
          ========================================================= */
-      const STORAGE_KEY = 'tw_owl_field_guide_yt_v1';
+      const STORAGE_KEY = 'tw_owl_field_guide_yt_v2';
       let currentDetailId = null;
       let detailUseBackupYt = false;
 
@@ -1740,7 +1796,7 @@
         const owl = OWLS.find(o => o.id === owlId);
         if (!owl) return;
 
-        // 若點擊的是已展開的同一張卡片 -> 收合並銷毀 iframe
+        // 若點擊同一張已展開卡片 -> 收合並銷毀 iframe
         if (appState.expandedYtCardId === owlId) {
           collapseAllCardYouTube();
           return;
@@ -1762,10 +1818,11 @@
               <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-forest-700/40 shadow">
                 <iframe
                   class="yt-embed-frame w-full h-full"
-                  src="${buildYouTubeEmbedUrl(owl.ytPrimary.id)}"
+                  src="${buildYouTubeEmbedUrl(owl.ytPrimary.id, false)}"
                   title="${escapeHtml(owl.ytPrimary.label)}"
                   loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowfullscreen>
                 </iframe>
               </div>
@@ -1824,7 +1881,6 @@
         const empty = byId('empty-state');
         if (!grid || !empty) return;
 
-        // 重新渲染網格前先清空已展開的卡片影片狀態
         appState.expandedYtCardId = null;
 
         const list = getFilteredOwls();
@@ -1863,7 +1919,7 @@
                 ${owl.id === 'collared_owlet' ? `
                   <button id="btn-owlet-flip-card" type="button" onclick="OwlApp.toggleOwletFlip(event)"
                     class="btn-primary absolute bottom-2 right-2 z-10 px-2.5 py-1.5 rounded-xl bg-ambercamp-500 hover:bg-ambercamp-400 text-forest-950 text-[11px] font-black shadow-lg flex items-center gap-1 transition cursor-pointer">
-                    <span>🔄</span><span>${isBack ? '切換真實照片' : '查看後腦假眼圖解'}</span>
+                    <span>🔄</span><span>${isBack ? '切換真實照片' : '翻面看假眼'}</span>
                   </button>
                 ` : ''}
               </div>
@@ -1955,7 +2011,6 @@
          8. 詳情 Modal（內嵌主/備用 YouTube 錄音）與大圖 Lightbox
          ========================================================= */
       function openDetailModal(owlId) {
-        // 開啟詳情前先停止卡片影片與離線音，避免重疊播放
         collapseAllCardYouTube();
         audioEngine.stop();
 
@@ -1969,11 +2024,9 @@
       }
 
       function closeDetailModal() {
-        // 立即清空 iframe src 以確保 YouTube 聲音完全停止
         const modalIframe = byId('detail-yt-iframe');
-        if (modalIframe) {
-          modalIframe.src = 'about:blank';
-        }
+        if (modalIframe) modalIframe.src = 'about:blank';
+
         const content = byId('detail-content');
         if (content) content.innerHTML = '';
 
@@ -2004,7 +2057,7 @@
         const extLink = byId('detail-yt-external');
 
         if (iframe) {
-          iframe.src = buildYouTubeEmbedUrl(track.id);
+          iframe.src = buildYouTubeEmbedUrl(track.id, false);
           iframe.title = track.label;
         }
         if (label) {
@@ -2040,7 +2093,7 @@
               ${owl.id === 'collared_owlet' ? `
                 <button id="btn-owlet-flip-modal" type="button" onclick="OwlApp.toggleOwletFlip(event)"
                   class="btn-primary absolute bottom-2.5 right-2.5 z-10 px-3 py-1.5 rounded-xl bg-ambercamp-500 hover:bg-ambercamp-400 text-forest-950 text-xs font-black shadow-lg flex items-center gap-1 transition cursor-pointer">
-                  <span>🔄</span><span>${isBack ? '切換真實照片' : '查看後腦假眼圖解'}</span>
+                  <span>🔄</span><span>${isBack ? '切換真實照片' : '翻面看假眼'}</span>
                 </button>
               ` : ''}
             </div>
@@ -2088,9 +2141,10 @@
               <iframe
                 id="detail-yt-iframe"
                 class="yt-embed-frame w-full h-full"
-                src="${buildYouTubeEmbedUrl(track.id)}"
+                src="${buildYouTubeEmbedUrl(track.id, false)}"
                 title="${escapeHtml(track.label)}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen>
               </iframe>
             </div>
@@ -2178,14 +2232,35 @@
       }
 
       /* =========================================================
-         9. 分頁二：聽音辨位挑戰（支援 YouTube 盲聽遮罩與離線模擬）
+         9. 分頁二：聽音辨位挑戰（物理裁切防爆雷盲聽舞台 + 離線模擬）
          ========================================================= */
       function clearQuizYouTube() {
-        const container = byId('quiz-yt-container');
-        if (!container) return;
-        const iframe = container.querySelector('iframe');
+        const stage = byId('quiz-yt-stage');
+        if (!stage) return;
+        const iframe = stage.querySelector('iframe');
         if (iframe) iframe.src = 'about:blank';
-        container.innerHTML = '';
+        stage.innerHTML = '';
+      }
+
+      function updateQuizBlindStageUI() {
+        const stage = byId('quiz-yt-stage');
+        const badge = byId('quiz-stage-badge');
+        const topText = byId('quiz-blind-top-text');
+        const bottomText = byId('quiz-blind-bottom-text');
+        const isRevealed = appState.quiz.answered;
+
+        if (stage) {
+          stage.classList.toggle('is-blind', !isRevealed);
+        }
+        if (badge) {
+          badge.textContent = isRevealed ? '🔓 答案已揭曉 · 完整野外影片' : '🔒 物理裁切防爆雷模式';
+        }
+        if (topText) {
+          topText.classList.toggle('hidden', isRevealed);
+        }
+        if (bottomText) {
+          bottomText.classList.toggle('hidden', isRevealed);
+        }
       }
 
       function setQuizMode(mode) {
@@ -2227,24 +2302,22 @@
 
       function mountQuizYouTube() {
         const target = appState.quiz.currentOwl;
-        const container = byId('quiz-yt-container');
-        const mask = byId('quiz-blind-mask');
-        if (!target || !container) return;
+        const stage = byId('quiz-yt-stage');
+        if (!target || !stage) return;
 
         clearQuizYouTube();
+        updateQuizBlindStageUI();
+
         if (appState.quiz.mode === 'youtube') {
-          container.innerHTML = `
+          stage.innerHTML = `
             <iframe
-              class="yt-embed-frame w-full h-full"
-              src="${buildYouTubeEmbedUrl(target.ytPrimary.id)}"
+              class="yt-embed-frame"
+              src="${buildYouTubeEmbedUrl(target.ytPrimary.id, true)}"
               title="神秘台灣貓頭鷹叫聲"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
             </iframe>
           `;
-        }
-        if (mask) {
-          mask.classList.toggle('hidden', appState.quiz.answered);
         }
       }
 
@@ -2336,9 +2409,8 @@
         appState.quiz.answered = true;
         audioEngine.stop();
 
-        // 答題後立即移除盲聽防爆雷遮罩
-        const mask = byId('quiz-blind-mask');
-        if (mask) mask.classList.add('hidden');
+        // 答題後立即移除 .is-blind，無縫展開完整 16:9 YouTube 影片並恢復正常亮度
+        updateQuizBlindStageUI();
 
         const target = appState.quiz.currentOwl;
         const isCorrect = selectedId === target.id;
@@ -2535,7 +2607,7 @@
           if (btn) btn.setAttribute('aria-pressed', 'false');
           if (icon) icon.textContent = '🌙';
           if (label) label.textContent = '夜間紅光';
-          if (themeMeta) themeMeta.setAttribute('content', '#0c1812');
+          if (themeMeta) themeMeta.setAttribute('content', '#13251e');
         }
       }
 
@@ -2619,11 +2691,11 @@
 
           const cardFlipBtn = byId('btn-owlet-flip-card');
           if (cardFlipBtn) {
-            cardFlipBtn.innerHTML = `<span>🔄</span><span>${appState.owletBackView ? '切換真實照片' : '查看後腦假眼圖解'}</span>`;
+            cardFlipBtn.innerHTML = `<span>🔄</span><span>${appState.owletBackView ? '切換真實照片' : '翻面看假眼'}</span>`;
           }
           const modalFlipBtn = byId('btn-owlet-flip-modal');
           if (modalFlipBtn) {
-            modalFlipBtn.innerHTML = `<span>🔄</span><span>${appState.owletBackView ? '切換真實照片' : '查看後腦假眼圖解'}</span>`;
+            modalFlipBtn.innerHTML = `<span>🔄</span><span>${appState.owletBackView ? '切換真實照片' : '翻面看假眼'}</span>`;
           }
         },
 
@@ -2810,7 +2882,7 @@
           const el = byId('quiz-hint-text-yt');
           if (el && appState.quiz.currentOwl) {
             el.textContent = `💡 小提示：${appState.quiz.currentOwl.callHint}`;
-            el.classList.remove('hidden');
+            el.classList.toggle('hidden');
           }
         });
 
@@ -2818,7 +2890,7 @@
           const el = byId('quiz-hint-text-synth');
           if (el && appState.quiz.currentOwl) {
             el.textContent = `💡 小提示：${appState.quiz.currentOwl.callHint}`;
-            el.classList.remove('hidden');
+            el.classList.toggle('hidden');
           }
         });
 
